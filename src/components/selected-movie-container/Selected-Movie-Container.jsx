@@ -50,13 +50,20 @@ const SelectedMovieContainer = () => {
     fetchMovies();
   }, []);
 
-  console.log(selectedMovie);
+  // console.log(selectedMovie);
 
   const getGenres = () => {
-    if (selectedMovie == {}) {
-      return "";
+    if (
+      !selectedMovie ||
+      !selectedMovie.genres ||
+      selectedMovie.genres.length === 0
+    ) {
+      return " ";
     } else {
-      return `${selectedMovie.genres[0].name}, ${selectedMovie.genres[1].name}`;
+      if (selectedMovie.genres.length > 1) {
+        return `${selectedMovie.genres[0].name}, ${selectedMovie.genres[1].name}`;
+      }
+      return `${selectedMovie.genres[0].name}`;
     }
   };
 
@@ -76,7 +83,11 @@ const SelectedMovieContainer = () => {
           <span> {getGenres()} </span>
         </div>
       </div>
-      <MoviesCarousel movies={movies} selectMovie={selectMovie} />
+      <MoviesCarousel
+        movies={movies}
+        selectMovie={selectMovie}
+        type="mustWatch"
+      />
     </div>
   );
 };
