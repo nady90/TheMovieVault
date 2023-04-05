@@ -1,0 +1,72 @@
+.movies-carousel {
+  height: 370px;
+
+  // width: 171px;
+  // width: 80vw;
+
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+
+  // background: rgba(11, 15, 22, 0.47);
+  // box-shadow: 8px -8px 10px rgba(0, 0, 0, 0.25);
+  // backdrop-filter: blur(12.5px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  // border-radius: 24px;
+
+  h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+  }
+
+  .scroller-container {
+    width: 90vw;
+    overflow-x: scroll;
+
+    .must-watch-container {
+      display: flex;
+      gap: 20px;
+
+      .must-watch-movie {
+        width: 168px;
+        .thumbnail-container {
+          width: 168px;
+          height: 237px;
+          overflow: hidden;
+          border-radius: 7px;
+          .thumbnail {
+            width: 168px;
+            height: 237px;
+
+            // border: 5px solid red;
+            // object-fit: contain;
+          }
+        }
+
+        .title-container {
+          span {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 500;
+          }
+        }
+        .date-contaier {
+          color: #afafaf;
+        }
+        .rating-container {
+          display: flex;
+          justify-content: space-between;
+          span {
+            color: #ffc907;
+            font-size: 1.1rem;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

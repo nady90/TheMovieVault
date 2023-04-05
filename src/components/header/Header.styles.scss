@@ -1,0 +1,86 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  // background-color: #6650a5;
+  // background-image: linear-gradient(260deg, #6650a5, #6650a5);
+  // background: rgb(2, 0, 36);
+  // background: linear-gradient(
+  //   90deg,
+  //   rgba(2, 0, 36, 1) 0%,
+  //   rgba(9, 9, 121, 0.507) 80%,
+  //   rgba(61, 8, 94, 0.699) 100%
+  // );
+
+  background: linear-gradient(
+    90.53deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(103, 80, 165, 0.582) 20%,
+    rgba(103, 80, 165, 0.822) 50%,
+    rgb(103, 80, 165) 100%
+  );
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+
+  padding: 1.1rem 4rem;
+
+  display: flex;
+  justify-content: space-between;
+  .logo-box {
+    color: #fff;
+    font-size: 3.6rem;
+
+    display: flex;
+    align-items: center;
+  }
+  .links-container {
+    display: flex;
+    align-items: center;
+    a {
+      font-size: 1.6rem;
+      color: #a1b1cb;
+      text-decoration: none;
+      margin-right: 5.1rem;
+    }
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+    .search {
+      color: #a2b3cd;
+
+      width: 32.4rem;
+      height: 3.7rem;
+      background-color: #3b567d;
+      outline: none;
+      border: none;
+      border-radius: 1.85rem;
+
+      padding: 8px 19px;
+    }
+  }
+  .profile-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    svg {
+      margin-right: 35px;
+    }
+
+    .profile-pic-container {
+      position: relative;
+
+      img {
+      }
+      svg {
+        margin: 0;
+        position: absolute;
+        bottom: 2px;
+        right: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.movie-card-container {
+  // width: 194.3px;
+  width: 168.3px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 310px;
+
+  .img-container {
+    // width: 194.3px;
+    width: 168px;
+    height: 237px;
+    border-radius: 7;
+    overflow: hidden;
+
+    img {
+      // width: 194.3px;
+      // height: 306px;
+      width: 168px;
+      height: 237px;
+    }
+  }
+  .content-container {
+    h4 {
+      color: #fff;
+      margin: 0;
+      // font-size: 1.1rem;
+      font-size: 16px;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+    .release-date {
+      color: #afafaf;
+      font-size: 11px;
+    }
+    .bottom-content-container {
+      .rating-container {
+        .vote-avg {
+          color: #ffc907;
+        }
+      }
+    }
+  }
+}

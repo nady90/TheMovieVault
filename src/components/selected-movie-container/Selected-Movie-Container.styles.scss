@@ -1,0 +1,46 @@
+.selected-movie-container {
+  height: 90.7rem;
+  // max-width: 131.5rem;
+  color: #fff;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      #000000 5%,
+      rgba(0, 0, 0, 0.687449) 20%,
+      rgba(196, 196, 196, 0) 100%
+    );
+  }
+
+  .selected-movie-content-container {
+    position: absolute;
+    bottom: 50%;
+    z-index: 3;
+    .selected-movie-title {
+      font-size: 3rem;
+    }
+
+    .selected-movie-overview {
+      font-size: 1.4rem;
+
+      max-width: 56rem;
+    }
+
+    .genre-container {
+      font-size: 1.8rem;
+    }
+  }
+}

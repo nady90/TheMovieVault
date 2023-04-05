@@ -1,0 +1,31 @@
+.aside-container {
+  // background-color: red;
+  flex-basis: 9%;
+  .aside {
+    width: 90px;
+    height: 320px;
+
+    position: fixed;
+    width: 117px;
+    height: 315px;
+    left: -32px;
+    top: 125px;
+
+    background: linear-gradient(
+      2.87deg,
+      #130b29 9.89%,
+      #5436a9 100%,
+      #5e47a1 100%
+    );
+
+    border-radius: 26px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 12px 0px;
+    svg {
+      transform: translateX(55px);
+    }
+  }
+}
