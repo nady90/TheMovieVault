@@ -57,7 +57,6 @@ const MovieCenter = () => {
     });
 
     // Results is an array of {id:--, name:--}
-    console.log(results);
     setRecommendedMovies(results);
   };
 
