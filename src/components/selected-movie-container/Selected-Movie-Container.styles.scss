@@ -27,20 +27,85 @@
 
   .selected-movie-content-container {
     position: absolute;
-    bottom: 50%;
+    bottom: 47%;
     z-index: 3;
+    margin-top: 3rem;
     .selected-movie-title {
-      font-size: 3rem;
+      font-size: 6rem;
+      margin-bottom: 2.5rem;
     }
 
     .selected-movie-overview {
       font-size: 1.4rem;
-
       max-width: 56rem;
     }
 
     .genre-container {
       font-size: 1.8rem;
+      margin-top: 1rem;
+      h3 {
+        color: #ff2e00;
+        text-transform: uppercase;
+      }
+      span {
+        margin-top: 3px;
+        display: block;
+      }
+    }
+
+    .buttons-container {
+      margin-top: 2rem;
+
+      font-size: 2rem;
+      display: flex;
+      gap: 2rem;
+      .watch-button {
+        cursor: pointer;
+        padding: 1rem 3rem;
+        display: block;
+        border-radius: 3rem;
+        background-color: #5436a9;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        span {
+        }
+        svg {
+        }
+      }
+      .mylist-button {
+        cursor: pointer;
+        padding: 1rem 3rem;
+        display: block;
+        border-radius: 3rem;
+
+        display: block;
+        background-color: #5c5c5c;
+        span {
+        }
+        svg {
+        }
+      }
+    }
+    .meta-data-container {
+      margin-top: 1.5rem;
+
+      img {
+        margin-right: 5px;
+      }
+      .rating {
+        color: #ffc907;
+        font-size: 2rem;
+      }
+      .date {
+        color: #959595;
+        font-size: 2rem;
+        font-weight: 600;
+
+        margin-left: 1rem;
+      }
     }
   }
 }

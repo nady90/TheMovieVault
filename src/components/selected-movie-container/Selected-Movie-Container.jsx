@@ -5,6 +5,7 @@ import axios from "axios";
 
 import movieWallpaper from "../../assets/MovieWallpaper.png";
 import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
+import imdbicon from "../../assets/imdbicon.png";
 
 const SelectedMovieContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -81,6 +82,57 @@ const SelectedMovieContainer = () => {
         <div className="genre-container">
           <h3>GENRES</h3>
           <span> {getGenres()} </span>
+        </div>
+        <div className="buttons-container">
+          <a className="watch-button">
+            <span>WATCH</span>
+            <svg
+              width="16"
+              height="17"
+              viewBox="0 0 16 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="playicon"
+                d="M2 2L14 8.6394L2 15.2788V2Z"
+                fill="white"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+          <a className="mylist-button">
+            <span>MY LIST</span>
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="addicon"
+                d="M16.936 10.2H10.564V16.5H6.712V10.2H0.34V6.6H6.712V0.299998H10.564V6.6H16.936V10.2Z"
+                fill="white"
+              />
+            </svg>
+          </a>
+        </div>
+        <div className="meta-data-container">
+          <img src={imdbicon} alt="" />
+          <span className="rating">
+            {selectedMovie.vote_average
+              ? selectedMovie.vote_average.toFixed(1)
+              : ""}
+          </span>
+          <span className="date">
+            {selectedMovie.release_date
+              ? selectedMovie.release_date.split("-")[0]
+              : ""}
+          </span>
         </div>
       </div>
       <MoviesCarousel
