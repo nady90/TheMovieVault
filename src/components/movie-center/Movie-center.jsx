@@ -11,6 +11,7 @@ const MovieCenter = () => {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [playTrailer, setPlayTrailer] = useState(false);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
+  const [comedyMovies, setComedyMovies] = useState([]);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
@@ -45,6 +46,22 @@ const MovieCenter = () => {
     setSelectedMovie(data);
   };
 
+  const fetchComedyMovies = async () => {
+    const path = `discover/movie`;
+    const {
+      data: { results },
+    } = await axios.get(`${apiURL}${path}`, {
+      params: {
+        api_key: apiKey,
+        with_genres: 35,
+        page: 3,
+      },
+    });
+
+    // Results is an array of {id:--, name:--}
+    setComedyMovies(results);
+  };
+
   const fetchRecommendedMovies = async () => {
     const path = `discover/movie`;
     const {
@@ -63,13 +80,32 @@ const MovieCenter = () => {
   useEffect(() => {
     fetchMovies();
     fetchRecommendedMovies();
+    fetchComedyMovies();
   }, []);
 
   return (
     <div className="movie-center">
       <MoviesCarousel movies={recommendedMovies} type="animated" />
-      <MoviesCarousel movies={movies} type="animated" />
-      <button>Show More</button>
+      <MoviesCarousel movies={comedyMovies} type="animated" />
+      <a className="show-more-button">
+        <span>Show More</span>
+        <svg
+          width="17"
+          height="10"
+          viewBox="0 0 17 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            id="downArrowIcon"
+            d="M15 1.99999L8.5 7.78367L2 2.00001"
+            stroke="#E7E7E7"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import whiteheartimg from "../../assets/whiteheartimg.png";
 const typesObject = {
   mustWatch: "movies-carousel",
   animated: "movies-carousel animated-carousel",
+  comedy: "movies-carousel animated-carousel",
 };
 
 const MoviesCarousel = ({ movies, selectMovie, type }) => {
