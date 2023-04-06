@@ -20,13 +20,24 @@ const MoviesCarousel = ({ movies, selectMovie, type }) => {
     }
   };
 
+  const categoryTitle = () => {
+    if (type === "animated") {
+      return <h3>BEST ANIMATED MOVIES</h3>;
+    } else if (type === "comedy") {
+      return <h3>BEST COMEDIES</h3>;
+    } else {
+      return <h3>MOVIES YOU MUST WATCH</h3>;
+    }
+  };
+
   return (
     <div className={typesObject[type]}>
-      {type === "animated" ? (
+      {/* {type === "animated" ? (
         <h3>Best Animated Movies</h3>
       ) : (
         <h3>MOVIES YOU MUST WATCH</h3>
-      )}
+      )} */}
+      {categoryTitle()}
       <div className="scroller-container">
         <div className="must-watch-container">
           {movies.map((movie) => {

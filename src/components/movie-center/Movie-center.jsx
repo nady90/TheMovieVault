@@ -86,7 +86,7 @@ const MovieCenter = () => {
   return (
     <div className="movie-center">
       <MoviesCarousel movies={recommendedMovies} type="animated" />
-      <MoviesCarousel movies={comedyMovies} type="animated" />
+      <MoviesCarousel movies={comedyMovies} type="comedy" />
       <a className="show-more-button">
         <span>Show More</span>
         <svg
