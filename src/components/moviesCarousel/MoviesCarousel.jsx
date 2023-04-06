@@ -7,7 +7,7 @@ import whiteheartimg from "../../assets/whiteheartimg.png";
 
 const typesObject = {
   mustWatch: "movies-carousel",
-  recommended: "movies-carousel recommended-carousel",
+  animated: "movies-carousel animated-carousel",
 };
 
 const MoviesCarousel = ({ movies, selectMovie, type }) => {
@@ -21,7 +21,7 @@ const MoviesCarousel = ({ movies, selectMovie, type }) => {
 
   return (
     <div className={typesObject[type]}>
-      {type === "recommended" ? (
+      {type === "animated" ? (
         <h3>Best Animated Movies</h3>
       ) : (
         <h3>MOVIES YOU MUST WATCH</h3>

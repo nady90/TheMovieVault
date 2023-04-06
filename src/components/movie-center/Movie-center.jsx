@@ -67,8 +67,8 @@ const MovieCenter = () => {
 
   return (
     <div className="movie-center">
-      <MoviesCarousel movies={recommendedMovies} type="recommended" />
-      <MoviesCarousel movies={movies} type="recommended" />
+      <MoviesCarousel movies={recommendedMovies} type="animated" />
+      <MoviesCarousel movies={movies} type="animated" />
       <button>Show More</button>
     </div>
   );
