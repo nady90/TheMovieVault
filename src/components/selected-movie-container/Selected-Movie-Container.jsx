@@ -1,11 +1,12 @@
 import React from "react";
 import "./Selected-Movie-Container.styles.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import movieWallpaper from "../../assets/MovieWallpaper.png";
 import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
 import imdbicon from "../../assets/imdbicon.png";
+import { MoviesContext } from "../../contexts/movies.contexts";
 
 const SelectedMovieContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +14,8 @@ const SelectedMovieContainer = () => {
   const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [playTrailer, setPlayTrailer] = useState(false);
+  const { animatedMovies, mustWatchMovies, crimeMovies } =
+    useContext(MoviesContext);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";

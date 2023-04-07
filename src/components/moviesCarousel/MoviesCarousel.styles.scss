@@ -35,43 +35,6 @@
     .must-watch-container {
       display: flex;
       gap: 20px;
-
-      .must-watch-movie {
-        width: 168px;
-        .thumbnail-container {
-          width: 168px;
-          height: 237px;
-          overflow: hidden;
-          border-radius: 7px;
-          .thumbnail {
-            width: 168px;
-            height: 237px;
-
-            // border: 5px solid red;
-            // object-fit: contain;
-          }
-        }
-
-        .title-container {
-          span {
-            color: #fff;
-            font-size: 1.6rem;
-            font-weight: 500;
-          }
-        }
-        .date-contaier {
-          color: #afafaf;
-        }
-        .rating-container {
-          display: flex;
-          justify-content: space-between;
-          span {
-            color: #ffc907;
-            font-size: 1.1rem;
-            font-weight: 500;
-          }
-        }
-      }
     }
   }
 }

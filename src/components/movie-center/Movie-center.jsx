@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Movie-center.styles.scss";
 import axios from "axios";
 
 import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
+import { MoviesContext } from "../../contexts/movies.contexts";
 
 const MovieCenter = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +13,15 @@ const MovieCenter = () => {
   const [playTrailer, setPlayTrailer] = useState(false);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [comedyMovies, setComedyMovies] = useState([]);
+
+  const {
+    mustWatchMovies,
+    animatedMovies,
+    comediesMovies,
+    dramadMovies,
+    crimeMovies,
+    musicalMovies,
+  } = useContext(MoviesContext);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
@@ -86,7 +96,7 @@ const MovieCenter = () => {
   return (
     <div className="movie-center">
       <MoviesCarousel movies={recommendedMovies} type="animated" />
-      <MoviesCarousel movies={comedyMovies} type="comedy" />
+      <MoviesCarousel movies={crimeMovies} type="crime" />
       <a className="show-more-button">
         <span>Show More</span>
         <svg

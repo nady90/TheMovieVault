@@ -1,12 +1,12 @@
 import React from "react";
 import "./Main-content-container.styles.scss";
-import HeroSection from "../hero-section/Hero-section";
 import MovieCenter from "../movie-center/Movie-center";
+import SelectedMovieContainer from "../selected-movie-container/Selected-Movie-Container";
 
 const MainContentContainer = () => {
   return (
     <div className="main-content">
-      <HeroSection />
+      <SelectedMovieContainer />
       <MovieCenter />
     </div>
   );
