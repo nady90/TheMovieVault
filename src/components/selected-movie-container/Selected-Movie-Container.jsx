@@ -6,7 +6,7 @@ import axios from "axios";
 import movieWallpaper from "../../assets/MovieWallpaper.png";
 import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
 import imdbicon from "../../assets/imdbicon.png";
-import { MoviesContext } from "../../contexts/movies.contexts";
+import { MoviesContext } from "../../contexts/movies.context";
 
 const SelectedMovieContainer = () => {
   const [isLoading, setIsLoading] = useState(true);

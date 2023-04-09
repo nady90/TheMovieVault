@@ -7,7 +7,7 @@ const CardSkeleton = () => {
   return (
     <div className="movie-card-container-skeleton">
       <div className="img-container-skeleton">
-        <Skeleton height={"100%"} />
+        <Skeleton height={"100%"} duration={0.8} />
       </div>
       <div className="title-container-skeleton">
         <h3>

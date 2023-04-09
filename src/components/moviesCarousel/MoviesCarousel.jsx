@@ -10,24 +10,40 @@ const typesObject = {
   crime: "movies-carousel animated-carousel",
   drama: "movies-carousel animated-carousel",
   musical: "movies-carousel animated-carousel",
+  horror: "movies-carousel animated-carousel",
+  documentary: "movies-carousel animated-carousel",
 };
 
 const MoviesCarousel = ({ movies, selectMovie, type, setMovie }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const categoryTitle = () => {
     if (type === "animated") {
       return <h3>BEST ANIMATED MOVIES</h3>;
     } else if (type === "comedy") {
       return <h3>BEST COMEDIES</h3>;
     } else if (type === "crime") {
-      return <h3>BEST CRIMES</h3>;
+      return <h3>BEST CRIME MOVIES</h3>;
     } else if (type === "drama") {
       return <h3>BEST COMEDIES</h3>;
     } else if (type === "musical") {
       return <h3>BEST MUSICALS</h3>;
+    } else if (type === "horror") {
+      return <h3>BEST HORROR</h3>;
+    } else if (type === "documentary") {
+      return <h3>BEST DOCUMENTARIES</h3>;
     } else {
       return <h3>MOVIES YOU MUST WATCH</h3>;
     }
   };
+
+  console.log(isLoaded);
+
+  useEffect(() => {
+    if (movies.length > 1) {
+      setIsLoaded(true);
+    }
+  }, [movies]);
 
   return (
     <div className={typesObject[type]}>
@@ -42,6 +58,7 @@ const MoviesCarousel = ({ movies, selectMovie, type, setMovie }) => {
                 movie={movie}
                 type="mustWatch"
                 selectMovie={selectMovie}
+                isLoaded={isLoaded}
               />
             );
           })}

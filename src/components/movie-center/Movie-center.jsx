@@ -3,7 +3,7 @@ import "./Movie-center.styles.scss";
 import axios from "axios";
 
 import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
-import { MoviesContext } from "../../contexts/movies.contexts";
+import { MoviesContext } from "../../contexts/movies.context";
 
 const MovieCenter = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +21,8 @@ const MovieCenter = () => {
     dramadMovies,
     crimeMovies,
     musicalMovies,
+    horrorMovies,
+    documentaryMovies,
   } = useContext(MoviesContext);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
@@ -96,7 +98,7 @@ const MovieCenter = () => {
   return (
     <div className="movie-center">
       <MoviesCarousel movies={recommendedMovies} type="animated" />
-      <MoviesCarousel movies={crimeMovies} type="crime" />
+      <MoviesCarousel movies={documentaryMovies} type="documentary" />
       <a className="show-more-button">
         <span>Show More</span>
         <svg

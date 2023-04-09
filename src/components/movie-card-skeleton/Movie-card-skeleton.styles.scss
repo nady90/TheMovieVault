@@ -1,11 +1,14 @@
 .movie-card-container-skeleton {
   width: 194.3px;
+  height: 317px;
 
   .img-container-skeleton {
     width: 194.3px;
     height: 306px;
   }
   .title-container-skeleton {
+    height: 5px;
+    margin-top: 10px;
     h3 {
       font-size: 1.6rem;
     }
