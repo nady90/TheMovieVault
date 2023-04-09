@@ -1,0 +1,33 @@
+.Selected-movie-contnet-container-skeleton {
+  // height: 90.7rem;
+  width: 90%;
+  position: absolute;
+  bottom: 47%;
+  z-index: 3;
+  margin-top: 3rem;
+
+  h2 {
+    width: 560px;
+    height: 72px;
+  }
+  p {
+    width: 560px;
+    height: 102px;
+  }
+  .genre-container-skeleton {
+  }
+  .buttons-container-skeleotn {
+    margin-top: 2rem;
+    display: flex;
+
+    .button-left-skeleton {
+      height: 44px;
+      width: 200px;
+      margin-right: 2rem;
+    }
+    .button-right-skeleton {
+      height: 44px;
+      width: 200px;
+    }
+  }
+}

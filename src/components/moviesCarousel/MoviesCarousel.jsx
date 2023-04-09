@@ -37,8 +37,6 @@ const MoviesCarousel = ({ movies, selectMovie, type, setMovie }) => {
     }
   };
 
-  console.log(isLoaded);
-
   useEffect(() => {
     if (movies.length > 1) {
       setIsLoaded(true);
