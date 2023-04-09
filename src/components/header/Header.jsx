@@ -10,7 +10,7 @@ const Header = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log("From Header:", currentUser);
+  // console.log("From Header:", currentUser);
 
   const goToAuth = () => {
     navigate("/auth");

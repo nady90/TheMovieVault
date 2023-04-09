@@ -10,6 +10,7 @@
     background-color: #5e47a1;
     padding: 1rem 2rem;
     border-radius: 21.5px;
+    cursor: pointer;
 
     margin: 4rem auto;
 
@@ -17,5 +18,70 @@
     align-items: center;
     justify-content: center;
     gap: 9px;
+
+    border: 3px solid #5d47a100;
+
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: black;
+      color: #5e47a1;
+      border: 3px solid #5e47a1;
+    }
+    &:hover svg path {
+      stroke: #5e47a1 !important;
+    }
+
+    svg {
+      animation: bouncebounce 0.9s 1.5s infinite ease-out alternate;
+    }
+    @keyframes bouncebounce {
+      0% {
+        transform: translateY(3px);
+      }
+      100% {
+        transform: translateY(-1px);
+      }
+    }
+  }
+  .more-content-container {
+    margin-top: 5px;
+
+    min-width: 100%;
+    // background-color: red;
+
+    .show-less-button {
+      display: inline-block;
+      color: #fff;
+      font-size: 1.8rem;
+      margin-top: 4rem;
+      background-color: #5e47a1;
+      padding: 1rem 2rem;
+      border-radius: 21.5px;
+      cursor: pointer;
+
+      margin: 4rem auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      border: 3px solid #5d47a100;
+
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: black;
+        color: #5e47a1;
+        border: 3px solid #5e47a1;
+      }
+      &:hover svg {
+        fill: #5e47a1 !important;
+      }
+
+      svg {
+        fill: #fff;
+        width: 16px;
+      }
+    }
   }
 }
