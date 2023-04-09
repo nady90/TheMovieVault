@@ -70,6 +70,62 @@
       margin-right: 35px;
     }
 
+    .sign-out-button {
+      background-color: rgb(255, 255, 255);
+      color: #6650a5;
+      text-transform: capitalize;
+      font-weight: 700;
+      font-size: 1.4rem;
+      // width: 75px;
+      // height: 25px;
+      border-radius: 7%;
+      cursor: pointer;
+
+      padding: 8px 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-left: 12px;
+      transition: all 0.2s ease-in-out;
+      border: 1px solid #ffffff00;
+
+      &:hover {
+        // transform: translateY(-2px);
+        background-color: #6650a5;
+        color: #fff;
+        border: 1px solid #fff;
+      }
+    }
+
+    .sign-in-button {
+      background-color: rgb(255, 255, 255);
+      color: #6650a5;
+      text-transform: capitalize;
+      font-weight: 700;
+      font-size: 1.8rem;
+      // width: 75px;
+      // height: 25px;
+      border-radius: 7%;
+      cursor: pointer;
+
+      padding: 10px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-left: 5px;
+      transition: all 0.2s ease-in-out;
+      border: 1px solid #ffffff00;
+
+      &:hover {
+        // transform: translateY(-2px);
+        background-color: #6650a5;
+        color: #fff;
+        border: 1px solid #fff;
+      }
+    }
+
     .profile-pic-container {
       position: relative;
 
