@@ -25,6 +25,7 @@ const MovieCenter = () => {
     musicalMovies,
     horrorMovies,
     documentaryMovies,
+    favouriteMovies,
   } = useContext(MoviesContext);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
@@ -114,8 +115,16 @@ const MovieCenter = () => {
 
   return (
     <div className="movie-center">
-      <MoviesCarousel movies={recommendedMovies} type="animated" />
-      <MoviesCarousel movies={documentaryMovies} type="documentary" />
+      <MoviesCarousel
+        movies={recommendedMovies}
+        type="animated"
+        favouriteMovies={favouriteMovies}
+      />
+      <MoviesCarousel
+        movies={documentaryMovies}
+        type="documentary"
+        favouriteMovies={favouriteMovies}
+      />
       {visible && (
         <a className="show-more-button" onClick={handleShowMore}>
           <span>Show More</span>
@@ -139,8 +148,16 @@ const MovieCenter = () => {
       )}
       {mainPageNo == 0 ? null : (
         <div className="more-content-container">
-          <MoviesCarousel movies={musicalMovies} type="musical" />
-          <MoviesCarousel movies={horrorMovies} type="horror" />
+          <MoviesCarousel
+            movies={musicalMovies}
+            type="musical"
+            favouriteMovies={favouriteMovies}
+          />
+          <MoviesCarousel
+            movies={horrorMovies}
+            type="horror"
+            favouriteMovies={favouriteMovies}
+          />
           {!visible && (
             <a className="show-less-button" onClick={handleShowLess}>
               <span>Show Less</span>

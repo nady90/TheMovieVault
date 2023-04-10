@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 import axios from "axios";
+
+import { getFavoritesIds } from "../utils/firebase/firebase.utils";
+import { UserContext } from "./user.context";
 
 export const MoviesContext = createContext({
   favouriteMovies: [],
@@ -25,6 +28,10 @@ export const MoviesProvider = ({ children }) => {
   const [musicalMovies, setMusicalMovies] = useState([]);
   const [horrorMovies, setHorrorMovies] = useState([]);
   const [documentaryMovies, setDocumentaryMovies] = useState([]);
+  const [favouriteMovies, setFavouriteMovies] = useState([]);
+  const [seenMovies, setSeenMovies] = useState([]);
+
+  const { currentUser } = useContext(UserContext);
 
   const fetchMovies = async (category) => {
     const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
@@ -101,6 +108,30 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
+  const fetchFavoriteIds = async (user) => {
+    const favouriteMoviesIds = await getFavoritesIds(user);
+    // console.log("This is in the movies context", favouriteMoviesIds);
+    fetchFavoriteMovies(favouriteMoviesIds);
+
+    return favouriteMoviesIds;
+  };
+
+  const fetchFavoriteMovies = async (favouriteMoviesIds) => {
+    const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
+    const apiURL = "https://api.themoviedb.org/3/movie";
+
+    if (!favouriteMoviesIds) return;
+
+    favouriteMoviesIds.forEach(async (movieId) => {
+      const { data } = await axios.get(`${apiURL}/${movieId}`, {
+        params: {
+          api_key: apiKey,
+        },
+      });
+      setFavouriteMovies((favouriteMovies) => [...favouriteMovies, data]);
+    });
+  };
+
   const value = {
     selectedMovie,
     mustWatchMovies,
@@ -111,6 +142,8 @@ export const MoviesProvider = ({ children }) => {
     musicalMovies,
     horrorMovies,
     documentaryMovies,
+    favouriteMovies,
+    seenMovies,
   };
 
   useEffect(() => {
@@ -123,6 +156,10 @@ export const MoviesProvider = ({ children }) => {
     fetchMovies("horror");
     fetchMovies("documentary");
   }, []);
+
+  useEffect(() => {
+    fetchFavoriteIds(currentUser);
+  }, [currentUser]);
 
   return (
     <MoviesContext.Provider value={value}>{children}</MoviesContext.Provider>

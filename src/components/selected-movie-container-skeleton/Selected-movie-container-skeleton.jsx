@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Selected-movie-container-skeleton.styles.scss";
 import Skeleton from "react-loading-skeleton";
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Movie-card.styles.scss";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -14,11 +14,20 @@ import {
 } from "../../utils/firebase/firebase.utils.js";
 import { UserContext } from "../../contexts/user.context";
 
-const MovieCard = ({ movie, type, selectMovie, isLoaded }) => {
+const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
   const { selectedMovie, mustWatchMovies, animatedMovies } =
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
   const [favouriteMovie, setFavoriteMovie] = useState(false);
+
+  useEffect(() => {
+    setFavoriteMovie(false);
+    favouriteMovies.map((databaseMovie) => {
+      if (databaseMovie.id == movie.id) {
+        return setFavoriteMovie(true);
+      }
+    });
+  }, [favouriteMovies]);
 
   const imgPath = "https://image.tmdb.org/t/p/w500/";
   const formatedReleaseDate = () => {
@@ -32,13 +41,13 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded }) => {
   };
 
   const handleAddMovie = () => {
-    console.log("heart icon clicked");
     console.log(movie);
     if (favouriteMovie) {
       removeMoviesFromUserDocument(currentUser, [movie]);
       console.log("We are removing this");
       setFavoriteMovie(false);
     } else {
+      console.log("We are adding this");
       addMoviesToUserDocument(currentUser, [movie]);
       setFavoriteMovie(true);
     }

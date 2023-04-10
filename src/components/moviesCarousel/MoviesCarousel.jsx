@@ -14,7 +14,13 @@ const typesObject = {
   documentary: "movies-carousel animated-carousel",
 };
 
-const MoviesCarousel = ({ movies, selectMovie, type, setMovie }) => {
+const MoviesCarousel = ({
+  movies,
+  selectMovie,
+  type,
+  setMovie,
+  favouriteMovies,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const categoryTitle = () => {
@@ -57,6 +63,7 @@ const MoviesCarousel = ({ movies, selectMovie, type, setMovie }) => {
                 type="mustWatch"
                 selectMovie={selectMovie}
                 isLoaded={isLoaded}
+                favouriteMovies={favouriteMovies}
               />
             );
           })}

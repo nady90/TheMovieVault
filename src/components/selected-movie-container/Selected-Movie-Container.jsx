@@ -18,7 +18,7 @@ const SelectedMovieContainer = () => {
   const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [playTrailer, setPlayTrailer] = useState(false);
-  const { animatedMovies, mustWatchMovies, crimeMovies } =
+  const { animatedMovies, mustWatchMovies, crimeMovies, favouriteMovies } =
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
 
@@ -165,6 +165,7 @@ const SelectedMovieContainer = () => {
           movies={movies}
           selectMovie={selectMovie}
           type="mustWatch"
+          favouriteMovies={favouriteMovies}
         />
       </div>
     </>

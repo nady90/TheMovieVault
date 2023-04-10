@@ -108,6 +108,7 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 /** SIGN OUT */
 export const signOutUser = async () => {
   signOut(auth);
+  window.location.reload(true);
 };
 
 /** Observer Pattern */
@@ -154,6 +155,7 @@ export const getCollectionAndDocuments = async () => {
  */
 export const addMoviesToUserDocument = async (userAuth, movies = []) => {
   if (movies.length < 1) return;
+  if (!userAuth) return;
 
   const userDocRef = doc(db, "users", userAuth.uid);
 
@@ -170,6 +172,7 @@ export const addMoviesToUserDocument = async (userAuth, movies = []) => {
 
 export const removeMoviesFromUserDocument = async (userAuth, movies = []) => {
   if (movies.length < 1) return;
+  if (!userAuth) return;
 
   const userDocRef = doc(db, "users", userAuth.uid);
 
@@ -182,4 +185,16 @@ export const removeMoviesFromUserDocument = async (userAuth, movies = []) => {
   // if user data exists
   // return userDocREf
   return userDocRef;
+};
+
+export const getFavoritesIds = async (userAuth) => {
+  if (!userAuth) return;
+
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+  const userData = userSnapshot.data();
+
+  const favoriteMoviesIds = userData.movies;
+
+  return favoriteMoviesIds;
 };
