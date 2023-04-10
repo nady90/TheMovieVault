@@ -4,12 +4,21 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import imdbicon from "../../assets/imdbicon.png";
 import whiteheartimg from "../../assets/whiteheartimg.png";
+import redheartimg from "../../assets/redheatimg.png";
 import { MoviesContext } from "../../contexts/movies.context";
 import CardSkeleton from "../movie-card-skeleton/Movie-card-skeleton";
+
+import {
+  addMoviesToUserDocument,
+  removeMoviesFromUserDocument,
+} from "../../utils/firebase/firebase.utils.js";
+import { UserContext } from "../../contexts/user.context";
 
 const MovieCard = ({ movie, type, selectMovie, isLoaded }) => {
   const { selectedMovie, mustWatchMovies, animatedMovies } =
     useContext(MoviesContext);
+  const { currentUser } = useContext(UserContext);
+  const [favouriteMovie, setFavoriteMovie] = useState(false);
 
   const imgPath = "https://image.tmdb.org/t/p/w500/";
   const formatedReleaseDate = () => {
@@ -20,6 +29,19 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded }) => {
 
   const handleClick = (movie) => {
     if (selectMovie) selectMovie(movie);
+  };
+
+  const handleAddMovie = () => {
+    console.log("heart icon clicked");
+    console.log(movie);
+    if (favouriteMovie) {
+      removeMoviesFromUserDocument(currentUser, [movie]);
+      console.log("We are removing this");
+      setFavoriteMovie(false);
+    } else {
+      addMoviesToUserDocument(currentUser, [movie]);
+      setFavoriteMovie(true);
+    }
   };
 
   return (
@@ -34,7 +56,6 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded }) => {
             handleClick(movie);
           }}
         >
-          {<h1 style={{ color: "white" }}>{selectedMovie.title}</h1>}
           <div className="thumbnail-container">
             <img className="thumbnail" src={`${imgPath}${movie.poster_path}`} />
           </div>
@@ -76,7 +97,13 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded }) => {
                   />
                 </g>
               </svg>
-              <img src={whiteheartimg} alt="" />
+              {favouriteMovie ? (
+                <>
+                  <img src={redheartimg} alt="" onClick={handleAddMovie} />
+                </>
+              ) : (
+                <img src={whiteheartimg} alt="" onClick={handleAddMovie} />
+              )}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import "./Selected-Movie-Container.styles.scss";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -9,6 +9,9 @@ import imdbicon from "../../assets/imdbicon.png";
 import { MoviesContext } from "../../contexts/movies.context";
 import SelectedMovieContainerSkeleton from "../../components/selected-movie-container-skeleton/Selected-movie-container-skeleton";
 
+import { addMoviesToUserDocument } from "../../utils/firebase/firebase.utils";
+import { UserContext } from "../../contexts/user.context";
+
 const SelectedMovieContainer = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [movies, setMovies] = useState([]);
@@ -17,6 +20,7 @@ const SelectedMovieContainer = () => {
   const [playTrailer, setPlayTrailer] = useState(false);
   const { animatedMovies, mustWatchMovies, crimeMovies } =
     useContext(MoviesContext);
+  const { currentUser } = useContext(UserContext);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
@@ -51,7 +55,13 @@ const SelectedMovieContainer = () => {
     setSelectedMovie(data);
   };
 
-  const handelAddMovie = async () => {};
+  const handelAddMovie = async () => {
+    if (selectedMovie === {}) return;
+    console.log(selectedMovie);
+    const res = await addMoviesToUserDocument(currentUser, [selectedMovie]);
+
+    console.log(res);
+  };
 
   useEffect(() => {
     fetchMovies();

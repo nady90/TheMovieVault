@@ -18,6 +18,9 @@ import {
   writeBatch,
   query,
   getDocs,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 
 // Import the functions you need from the SDKs you need
@@ -149,15 +152,32 @@ export const getCollectionAndDocuments = async () => {
 /**
  * Storing user's movie data.
  */
-const addMoviesToUserDocument = async (userAuth, movies = []) => {
-  const userDocRef = doc(db, "users", userAuth.uid);
-  const userSnapshot = await getDoc(userDocRef);
+export const addMoviesToUserDocument = async (userAuth, movies = []) => {
+  if (movies.length < 1) return;
 
-  try {
-    await setDoc(userDocRef, movies);
-  } catch (error) {
-    console.log(error);
-  }
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  movies.forEach(async (movie) => {
+    await updateDoc(userDocRef, {
+      movies: arrayUnion(`${movie.id}`),
+    });
+  });
+
+  // if user data exists
+  // return userDocREf
+  return userDocRef;
+};
+
+export const removeMoviesFromUserDocument = async (userAuth, movies = []) => {
+  if (movies.length < 1) return;
+
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  movies.forEach(async (movie) => {
+    updateDoc(userDocRef, {
+      movies: arrayRemove(`${movie.id}`),
+    });
+  });
 
   // if user data exists
   // return userDocREf
