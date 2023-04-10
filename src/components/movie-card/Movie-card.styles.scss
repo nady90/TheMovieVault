@@ -48,10 +48,33 @@
     }
 
     .favourite-icons {
+      display: flex;
       svg {
         margin-right: 5px;
+        cursor: pointer;
       }
-      img {
+
+      .heart-container {
+        display: flex;
+        position: relative;
+
+        img {
+          cursor: pointer;
+        }
+        .sign-in-alert {
+          background-color: rgb(150, 9, 9);
+          color: #ffffff;
+          font-size: 1.8rem;
+          padding: 10px 20px;
+          width: max-content;
+          border-radius: 20px;
+
+          position: absolute;
+          bottom: 20px;
+          right: -27px;
+
+          display: none;
+        }
       }
     }
   }

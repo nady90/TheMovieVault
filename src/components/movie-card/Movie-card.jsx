@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useRef } from "react";
 import "./Movie-card.styles.scss";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -7,6 +8,7 @@ import whiteheartimg from "../../assets/whiteheartimg.png";
 import redheartimg from "../../assets/redheatimg.png";
 import { MoviesContext } from "../../contexts/movies.context";
 import CardSkeleton from "../movie-card-skeleton/Movie-card-skeleton";
+import alertSound from "../../assets/sounds/double-beep-alert.wav";
 
 import {
   addMoviesToUserDocument,
@@ -19,6 +21,7 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
   const [favouriteMovie, setFavoriteMovie] = useState(false);
+  const alertRef = useRef(null);
 
   useEffect(() => {
     setFavoriteMovie(false);
@@ -40,7 +43,20 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
     if (selectMovie) selectMovie(movie);
   };
 
+  const playSound = (sound) => {
+    new Audio(sound).play();
+  };
+
   const handleAddMovie = () => {
+    if (!currentUser) {
+      playSound(alertSound);
+      alertRef.current.style.display = "block";
+      setTimeout(() => {
+        alertRef.current.style.display = "none";
+      }, 2000);
+      return;
+    }
+
     console.log(movie);
     if (favouriteMovie) {
       removeMoviesFromUserDocument(currentUser, [movie]);
@@ -111,7 +127,12 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
                   <img src={redheartimg} alt="" onClick={handleAddMovie} />
                 </>
               ) : (
-                <img src={whiteheartimg} alt="" onClick={handleAddMovie} />
+                <div className="heart-container">
+                  <div ref={alertRef} className="sign-in-alert">
+                    Sign In First!
+                  </div>
+                  <img src={whiteheartimg} alt="" onClick={handleAddMovie} />
+                </div>
               )}
             </div>
           </div>
