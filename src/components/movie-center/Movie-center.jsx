@@ -103,7 +103,9 @@ const MovieCenter = () => {
     setVisible((prev) => !prev);
     if (mainPageNo == 1) {
       setMainPageNo(0);
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      }, 100);
     }
   };
 

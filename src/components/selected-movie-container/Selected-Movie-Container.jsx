@@ -1,6 +1,6 @@
-import React, { createContext } from "react";
+import React from "react";
 import "./Selected-Movie-Container.styles.scss";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import YouTube from "react-youtube";
 
@@ -23,6 +23,8 @@ const SelectedMovieContainer = () => {
   const { currentUser } = useContext(UserContext);
   const [showTrailer, setShowTrailer] = useState(false);
   const [trailerKey, setTrailerKey] = useState(null);
+
+  const youtubeRef = useRef(null);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
@@ -84,6 +86,25 @@ const SelectedMovieContainer = () => {
     setShowTrailer(true);
     setTrailerKey(key);
   };
+
+  const closeTrailerWhenClickingOutside = (event) => {
+    if (youtubeRef.current && !youtubeRef.current.contains(event.target)) {
+      // alert("You clicked outside of me!");
+      setShowTrailer(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeTrailerWhenClickingOutside);
+
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener(
+        "mousedown",
+        closeTrailerWhenClickingOutside
+      );
+    };
+  }, [youtubeRef]);
 
   useEffect(() => {
     fetchMovies();
@@ -184,7 +205,7 @@ const SelectedMovieContainer = () => {
         )}
 
         {showTrailer && (
-          <div className="youtube-container">
+          <div className="youtube-container" ref={youtubeRef}>
             <YouTube
               videoId={trailerKey}
               className="youtube-player"
