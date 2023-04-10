@@ -53,7 +53,7 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
       alertRef.current.style.display = "block";
       setTimeout(() => {
         alertRef.current.style.display = "none";
-      }, 2000);
+      }, 1500);
       return;
     }
 

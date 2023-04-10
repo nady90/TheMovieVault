@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import "./Selected-Movie-Container.styles.scss";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import YouTube from "react-youtube";
 
 import movieWallpaper from "../../assets/MovieWallpaper.png";
 import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
@@ -17,10 +18,11 @@ const SelectedMovieContainer = () => {
   const [movies, setMovies] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
-  const [playTrailer, setPlayTrailer] = useState(false);
   const { animatedMovies, mustWatchMovies, crimeMovies, favouriteMovies } =
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
+  const [showTrailer, setShowTrailer] = useState(false);
+  const [trailerKey, setTrailerKey] = useState(null);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
@@ -34,6 +36,7 @@ const SelectedMovieContainer = () => {
       params: {
         api_key: apiKey,
         query: searchKey,
+        append_to_response: "videos",
       },
     });
     selectMovie(results[0]);
@@ -61,6 +64,25 @@ const SelectedMovieContainer = () => {
     const res = await addMoviesToUserDocument(currentUser, [selectedMovie]);
 
     console.log(res);
+  };
+
+  const getVideoKey = async (id) => {
+    if (selectedMovie == {} || selectedMovie.id == undefined) return;
+    const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
+
+    //https://api.themoviedb.org/3/movie/157336/videos?api_key={api_key}
+    const { data: results } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`
+    );
+
+    console.log(results.results[0].key);
+    return results.results[0].key;
+  };
+
+  const handleShowTrailer = async () => {
+    const key = await getVideoKey(selectedMovie.id);
+    setShowTrailer(true);
+    setTrailerKey(key);
   };
 
   useEffect(() => {
@@ -108,7 +130,7 @@ const SelectedMovieContainer = () => {
               <span> {getGenres()} </span>
             </div>
             <div className="buttons-container">
-              <a className="watch-button">
+              <a className="watch-button" onClick={handleShowTrailer}>
                 <span>WATCH</span>
                 <svg
                   width="16"
@@ -157,6 +179,27 @@ const SelectedMovieContainer = () => {
                   ? selectedMovie.release_date.split("-")[0]
                   : ""}
               </span>
+            </div>
+          </div>
+        )}
+
+        {showTrailer && (
+          <div className="youtube-container">
+            <YouTube
+              videoId={trailerKey}
+              className="youtube-player"
+              opts={{
+                height: "100%",
+                width: "100%",
+              }}
+            />
+            <div
+              className="close-yt"
+              onClick={() => {
+                setShowTrailer(false);
+              }}
+            >
+              Close Trailer
             </div>
           </div>
         )}

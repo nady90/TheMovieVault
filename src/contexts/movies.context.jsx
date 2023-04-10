@@ -74,6 +74,7 @@ export const MoviesProvider = ({ children }) => {
       params: {
         api_key: apiKey,
         with_genres: genre,
+        append_to_response: "videos",
       },
     });
 
