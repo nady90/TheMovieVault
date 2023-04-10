@@ -51,6 +51,8 @@ const SelectedMovieContainer = () => {
     setSelectedMovie(data);
   };
 
+  const handelAddMovie = async () => {};
+
   useEffect(() => {
     fetchMovies();
   }, []);
@@ -116,7 +118,7 @@ const SelectedMovieContainer = () => {
                   />
                 </svg>
               </a>
-              <a className="mylist-button">
+              <a className="mylist-button" onClick={handelAddMovie}>
                 <span>MY LIST</span>
                 <svg
                   width="17"

@@ -145,3 +145,21 @@ export const getCollectionAndDocuments = async () => {
 
   return categoryMap;
 };
+
+/**
+ * Storing user's movie data.
+ */
+const addMoviesToUserDocument = async (userAuth, movies = []) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+
+  try {
+    await setDoc(userDocRef, movies);
+  } catch (error) {
+    console.log(error);
+  }
+
+  // if user data exists
+  // return userDocREf
+  return userDocRef;
+};

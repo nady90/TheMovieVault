@@ -74,6 +74,17 @@
         }
         svg {
         }
+
+        &:hover {
+          background-color: #fff;
+          color: #5436a9;
+        }
+
+        &:hover svg path {
+          // background-color: #fff;
+          stroke: #5436a9;
+          fill: #5436a9 !important;
+        }
       }
       .mylist-button {
         cursor: pointer;
@@ -84,8 +95,18 @@
         display: block;
         background-color: #5c5c5c;
         span {
+          margin-right: 1rem;
         }
         svg {
+        }
+
+        &:hover {
+          background-color: #fff;
+          color: #5436a9;
+        }
+        &:hover svg path {
+          stroke: #5436a9;
+          fill: #5436a9 !important;
         }
       }
     }
