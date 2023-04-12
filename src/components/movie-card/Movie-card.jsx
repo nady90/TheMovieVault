@@ -10,6 +10,8 @@ import { MoviesContext } from "../../contexts/movies.context";
 import CardSkeleton from "../movie-card-skeleton/Movie-card-skeleton";
 import alertSound from "../../assets/sounds/double-beep-alert.wav";
 
+import useSound from "use-sound";
+
 import {
   addMoviesToUserDocument,
   removeMoviesFromUserDocument,
@@ -43,17 +45,21 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
     if (selectMovie) selectMovie(movie);
   };
 
-  const playSound = (sound) => {
-    new Audio(sound).play();
-  };
+  const [playActive] = useSound(alertSound, { volume: 0.25 });
+
+  // const alarmSound = new Audio();
+  // alarmSound.preload = "auto";
+  // alarmSound.src = alertSound;
 
   const handleAddMovie = () => {
     if (!currentUser) {
-      playSound(alertSound);
+      // alarmSound.play();
+      playActive();
+
       alertRef.current.style.display = "block";
       setTimeout(() => {
         alertRef.current.style.display = "none";
-      }, 1500);
+      }, 1200);
       return;
     }
 
