@@ -18,7 +18,14 @@ import {
 } from "../../utils/firebase/firebase.utils.js";
 import { UserContext } from "../../contexts/user.context";
 
-const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
+const MovieCard = ({
+  movie,
+  type,
+  selectMovie,
+  isLoaded,
+  favouriteMovies,
+  playDoubleBeep,
+}) => {
   const { selectedMovie, mustWatchMovies, animatedMovies } =
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
@@ -45,7 +52,7 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
     if (selectMovie) selectMovie(movie);
   };
 
-  const [playActive] = useSound(alertSound, { volume: 0.25 });
+  // const [playActive] = useSound(alertSound, { volume: 0.25 });
 
   // const alarmSound = new Audio();
   // alarmSound.preload = "auto";
@@ -54,7 +61,8 @@ const MovieCard = ({ movie, type, selectMovie, isLoaded, favouriteMovies }) => {
   const handleAddMovie = () => {
     if (!currentUser) {
       // alarmSound.play();
-      playActive();
+      // playActive();
+      playDoubleBeep();
 
       alertRef.current.style.display = "block";
       setTimeout(() => {

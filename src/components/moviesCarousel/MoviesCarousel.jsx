@@ -3,6 +3,10 @@ import "./MoviesCarousel.styles.scss";
 
 import MovieCard from "../movie-card/Movie-card";
 
+import alertSound from "../../assets/sounds/dobule-beep-alarm.mp3";
+
+import useSound from "use-sound";
+
 const typesObject = {
   mustWatch: "movies-carousel",
   animated: "movies-carousel animated-carousel",
@@ -22,6 +26,8 @@ const MoviesCarousel = ({
   favouriteMovies,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const [playDoubleBeep] = useSound(alertSound, { volume: 0.25 });
 
   const categoryTitle = () => {
     if (type === "animated") {
@@ -64,6 +70,7 @@ const MoviesCarousel = ({
                 selectMovie={selectMovie}
                 isLoaded={isLoaded}
                 favouriteMovies={favouriteMovies}
+                playDoubleBeep={playDoubleBeep}
               />
             );
           })}
