@@ -8,7 +8,7 @@ import whiteheartimg from "../../assets/whiteheartimg.png";
 import redheartimg from "../../assets/redheatimg.png";
 import { MoviesContext } from "../../contexts/movies.context";
 import CardSkeleton from "../movie-card-skeleton/Movie-card-skeleton";
-import alertSound from "../../assets/sounds/double-beep-alert.wav";
+import alertSound from "../../assets/sounds/dobule-beep-alarm.mp3";
 
 import useSound from "use-sound";
 
