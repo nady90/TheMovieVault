@@ -16,11 +16,21 @@ const Header = () => {
     navigate("/auth");
   };
 
+  const goToHome = () => {
+    navigate("/");
+  };
+
+  const deleteThisLater = () => {
+    navigate("/movie/123");
+  };
+
   return (
     <div className="header">
-      <div className="logo-box">TheMovieVault</div>
+      <div className="logo-box" onClick={goToHome}>
+        TheMovieVault
+      </div>
       <div className="links-container">
-        <NavLink to="" style={{ color: "#fff" }}>
+        <NavLink to="/" style={{ color: "#fff" }}>
           HOME
         </NavLink>
         <NavLink to="">MOVIES</NavLink>
@@ -143,9 +153,11 @@ const Header = () => {
             </div>
           </>
         ) : (
-          <div className="sign-in-button" onClick={goToAuth}>
-            Sign In{" "}
-          </div>
+          <>
+            <div className="sign-in-button" onClick={goToAuth}>
+              Sign In{" "}
+            </div>
+          </>
         )}
       </div>
     </div>

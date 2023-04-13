@@ -9,6 +9,7 @@ import redheartimg from "../../assets/redheatimg.png";
 import { MoviesContext } from "../../contexts/movies.context";
 import CardSkeleton from "../movie-card-skeleton/Movie-card-skeleton";
 import alertSound from "../../assets/sounds/dobule-beep-alarm.mp3";
+import { useNavigate } from "react-router-dom";
 
 import useSound from "use-sound";
 
@@ -25,12 +26,14 @@ const MovieCard = ({
   isLoaded,
   favouriteMovies,
   playDoubleBeep,
+  clickable = true,
 }) => {
   const { selectedMovie, mustWatchMovies, animatedMovies } =
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
   const [favouriteMovie, setFavoriteMovie] = useState(false);
   const alertRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFavoriteMovie(false);
@@ -50,6 +53,8 @@ const MovieCard = ({
 
   const handleClick = (movie) => {
     if (selectMovie) selectMovie(movie);
+    if (!clickable) return;
+    navigate(`movie/${movie.id}`);
   };
 
   // const [playActive] = useSound(alertSound, { volume: 0.25 });
@@ -71,7 +76,6 @@ const MovieCard = ({
       return;
     }
 
-    console.log(movie);
     if (favouriteMovie) {
       removeMoviesFromUserDocument(currentUser, [movie]);
       console.log("We are removing this");
@@ -88,14 +92,13 @@ const MovieCard = ({
       {isLoaded === false ? (
         <CardSkeleton />
       ) : (
-        <div
-          key={movie.id}
-          className="card-container"
-          onClick={() => {
-            handleClick(movie);
-          }}
-        >
-          <div className="thumbnail-container">
+        <div key={movie.id} className="card-container">
+          <div
+            className="thumbnail-container"
+            onClick={() => {
+              handleClick(movie);
+            }}
+          >
             <img className="thumbnail" src={`${imgPath}${movie.poster_path}`} />
           </div>
 
