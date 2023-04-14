@@ -20,6 +20,7 @@
     }
 
     position: relative;
+
     &:hover::after {
       display: flex;
       color: #fff;
@@ -73,6 +74,44 @@
 
     .favourite-icons {
       display: flex;
+
+      .seen-icon {
+        width: 14px;
+        height: 14px;
+
+        circle {
+          fill: #25ae88;
+        }
+
+        polyline {
+          fill: none;
+          stroke: white;
+          stroke-width: 4;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-miterlimit: 10;
+        }
+      }
+
+      .eye-container {
+        display: flex;
+
+        position: relative;
+        .eye-sign-in-alert {
+          background-color: rgb(23, 9, 150);
+          color: #ffffff;
+          font-size: 1.8rem;
+          padding: 10px 20px;
+          width: max-content;
+          border-radius: 20px;
+
+          position: absolute;
+          bottom: 20px;
+          right: -27px;
+
+          display: none;
+        }
+      }
       svg {
         margin-right: 5px;
         cursor: pointer;

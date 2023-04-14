@@ -16,6 +16,7 @@ import useSound from "use-sound";
 import {
   addMoviesToUserDocument,
   removeMoviesFromUserDocument,
+  addSeenMoviesToUserDocument,
 } from "../../utils/firebase/firebase.utils.js";
 import { UserContext } from "../../contexts/user.context";
 
@@ -32,7 +33,9 @@ const MovieCard = ({
     useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
   const [favouriteMovie, setFavoriteMovie] = useState(false);
+  const [seenMovie, setSeenMovie] = useState(false);
   const alertRef = useRef(null);
+  const eyeAlertRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,6 +73,10 @@ const MovieCard = ({
       playDoubleBeep();
 
       alertRef.current.style.display = "block";
+      // eyeAlertRef.current.style.display == "block"
+      //   ? (alertRef.current.style.display = "none")
+      //   : (alertRef.current.style.display = "block");
+
       setTimeout(() => {
         alertRef.current.style.display = "none";
       }, 1200);
@@ -84,6 +91,24 @@ const MovieCard = ({
       console.log("We are adding this");
       addMoviesToUserDocument(currentUser, [movie]);
       setFavoriteMovie(true);
+    }
+  };
+
+  const handleAddSeenMovie = () => {
+    if (!currentUser) {
+      // alarmSound.play();
+      // playActive();
+      playDoubleBeep();
+
+      eyeAlertRef.current.style.display = "block";
+      // If alertRef is display block make it display none
+      // alertRef.current.style.display == "block"
+      //   ? (eyeAlertRef.current.style.display = "none")
+      //   : (eyeAlertRef.current.style.display = "block");
+      setTimeout(() => {
+        eyeAlertRef.current.style.display = "none";
+      }, 1200);
+      return;
     }
   };
 
@@ -113,32 +138,57 @@ const MovieCard = ({
             </div>
 
             <div className="favourite-icons">
-              <svg
-                width="17"
-                height="16"
-                viewBox="0 0 17 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="eye-icon">
-                  <path
-                    id="Vector"
-                    d="M0.708344 7.99999C0.708344 7.99999 3.54168 2.66666 8.50001 2.66666C13.4583 2.66666 16.2917 7.99999 16.2917 7.99999C16.2917 7.99999 13.4583 13.3333 8.50001 13.3333C3.54168 13.3333 0.708344 7.99999 0.708344 7.99999Z"
-                    stroke="white"
-                    strokeWidth="0.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+              {seenMovie ? (
+                <svg
+                  className="seen-icon"
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 50 50"
+                  xmlSpace="preserve"
+                >
+                  <circle cx="25" cy="25" r="25" />
+                  <polyline
+                    points="
+             38,15 22,33 12,25 "
                   />
-                  <path
-                    id="Vector_2"
-                    d="M8.5 10C9.6736 10 10.625 9.10457 10.625 8C10.625 6.89543 9.6736 6 8.5 6C7.32639 6 6.375 6.89543 6.375 8C6.375 9.10457 7.32639 10 8.5 10Z"
-                    stroke="white"
-                    strokeWidth="0.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-              </svg>
+                </svg>
+              ) : (
+                <div className="eye-container">
+                  <svg
+                    onClick={handleAddSeenMovie}
+                    width="17"
+                    height="16"
+                    viewBox="0 0 17 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="eye-icon">
+                      <path
+                        id="Vector"
+                        d="M0.708344 7.99999C0.708344 7.99999 3.54168 2.66666 8.50001 2.66666C13.4583 2.66666 16.2917 7.99999 16.2917 7.99999C16.2917 7.99999 13.4583 13.3333 8.50001 13.3333C3.54168 13.3333 0.708344 7.99999 0.708344 7.99999Z"
+                        stroke="white"
+                        strokeWidth="0.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        id="Vector_2"
+                        d="M8.5 10C9.6736 10 10.625 9.10457 10.625 8C10.625 6.89543 9.6736 6 8.5 6C7.32639 6 6.375 6.89543 6.375 8C6.375 9.10457 7.32639 10 8.5 10Z"
+                        stroke="white"
+                        strokeWidth="0.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </g>
+                  </svg>
+                  <div ref={eyeAlertRef} className="eye-sign-in-alert">
+                    Sign In First!
+                  </div>
+                </div>
+              )}
+
               {favouriteMovie ? (
                 <>
                   <img
