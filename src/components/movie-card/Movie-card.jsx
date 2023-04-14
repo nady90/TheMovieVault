@@ -141,7 +141,12 @@ const MovieCard = ({
               </svg>
               {favouriteMovie ? (
                 <>
-                  <img src={redheartimg} alt="" onClick={handleAddMovie} />
+                  <img
+                    className="red-heart-img"
+                    src={redheartimg}
+                    alt=""
+                    onClick={handleAddMovie}
+                  />
                 </>
               ) : (
                 <div className="heart-container">

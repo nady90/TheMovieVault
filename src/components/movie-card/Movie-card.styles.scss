@@ -6,10 +6,34 @@
   flex-direction: column;
   justify-content: space-between;
   .thumbnail-container {
+    cursor: pointer;
+
     width: 168px;
     height: 237px;
     overflow: hidden;
     border-radius: 7px;
+
+    border: 3px solid rgba(0, 0, 0, 0);
+
+    &:hover {
+      border: 3px solid #4949e7;
+    }
+
+    position: relative;
+    &:hover::after {
+      display: flex;
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      text-align: center;
+      content: "Get Moive Details";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(19, 19, 19, 0.664);
+      border: 2px solid black;
+    }
+
     .thumbnail {
       width: 168px;
       height: 237px;
@@ -53,10 +77,14 @@
         margin-right: 5px;
         cursor: pointer;
       }
+      .red-heart-img {
+        cursor: pointer;
+      }
 
       .heart-container {
         display: flex;
         position: relative;
+        cursor: pointer;
 
         img {
           cursor: pointer;
