@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import axios from "axios";
 
-import { getFavoritesIds } from "../utils/firebase/firebase.utils";
+import {
+  getFavoritesIds,
+  getSeenMoviesIds,
+} from "../utils/firebase/firebase.utils";
 import { UserContext } from "./user.context";
 
 export const MoviesContext = createContext({
@@ -133,6 +136,29 @@ export const MoviesProvider = ({ children }) => {
     });
   };
 
+  const fetchSeenMoviesIds = async (user) => {
+    const seenMoviesIds = await getSeenMoviesIds(user);
+    fetchSeenMovies(seenMoviesIds);
+
+    return seenMoviesIds;
+  };
+
+  const fetchSeenMovies = async (seenMoviesIds) => {
+    const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
+    const apiURL = "https://api.themoviedb.org/3/movie";
+
+    if (!seenMoviesIds) return;
+
+    seenMoviesIds.forEach(async (movieId) => {
+      const { data } = await axios.get(`${apiURL}/${movieId}`, {
+        params: {
+          api_key: apiKey,
+        },
+      });
+      setSeenMovies((seenMovies) => [...seenMovies, data]);
+    });
+  };
+
   const value = {
     selectedMovie,
     mustWatchMovies,
@@ -160,6 +186,7 @@ export const MoviesProvider = ({ children }) => {
 
   useEffect(() => {
     fetchFavoriteIds(currentUser);
+    fetchSeenMoviesIds(currentUser);
   }, [currentUser]);
 
   return (

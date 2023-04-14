@@ -199,8 +199,20 @@ export const getFavoritesIds = async (userAuth) => {
   return favoriteMoviesIds;
 };
 
-// A function that receives firebase user auth and a movie id and creates a data field called seen movies in the user document
+// A function that receives firebase user auth and returns the seenMovies array
+export const getSeenMoviesIds = async (userAuth) => {
+  if (!userAuth) return;
 
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+  const userData = userSnapshot.data();
+
+  const seenMoviesIds = userData.seenMovies;
+
+  return seenMoviesIds;
+};
+
+// A function that receives firebase user auth and a movie id and creates a data field called seen movies in the user document
 export const addSeenMoviesToUserDocument = async (userAuth, movies = []) => {
   if (movies.length < 1) return;
   if (!userAuth) return;
@@ -211,9 +223,31 @@ export const addSeenMoviesToUserDocument = async (userAuth, movies = []) => {
     await updateDoc(userDocRef, {
       seenMovies: arrayUnion(`${movie.id}`),
     });
+
+    return userDocRef;
   });
 
-  // if user data exists
-  // return userDocREf
+  // console.log("userDocRef", userDocRef);
+  // console.log("movies", movies);
+  return userDocRef;
+};
+
+export const removeSeenMoviesFromUserDocument = async (
+  userAuth,
+  movies = []
+) => {
+  if (movies.length < 1) return;
+  if (!userAuth) return;
+
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  movies.forEach(async (movie) => {
+    updateDoc(userDocRef, {
+      seenMovies: arrayRemove(`${movie.id}`),
+    });
+  });
+
+  // console.log("We removed it");
+
   return userDocRef;
 };

@@ -26,6 +26,7 @@ const MovieCenter = () => {
     horrorMovies,
     documentaryMovies,
     favouriteMovies,
+    seenMovies,
   } = useContext(MoviesContext);
 
   const imgPath = "https://image.tmdb.org/t/p/original";
@@ -121,11 +122,13 @@ const MovieCenter = () => {
         movies={recommendedMovies}
         type="animated"
         favouriteMovies={favouriteMovies}
+        seenMovies={seenMovies}
       />
       <MoviesCarousel
         movies={documentaryMovies}
         type="documentary"
         favouriteMovies={favouriteMovies}
+        seenMovies={seenMovies}
       />
       {visible && (
         <a className="show-more-button" onClick={handleShowMore}>

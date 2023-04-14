@@ -24,6 +24,7 @@ const MoviesCarousel = ({
   type,
   setMovie,
   favouriteMovies,
+  seenMovies,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -71,6 +72,7 @@ const MoviesCarousel = ({
                 isLoaded={isLoaded}
                 favouriteMovies={favouriteMovies}
                 playDoubleBeep={playDoubleBeep}
+                seenMovies={seenMovies}
               />
             );
           })}

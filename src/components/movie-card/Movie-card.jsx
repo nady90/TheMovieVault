@@ -17,6 +17,7 @@ import {
   addMoviesToUserDocument,
   removeMoviesFromUserDocument,
   addSeenMoviesToUserDocument,
+  removeSeenMoviesFromUserDocument,
 } from "../../utils/firebase/firebase.utils.js";
 import { UserContext } from "../../contexts/user.context";
 
@@ -28,6 +29,7 @@ const MovieCard = ({
   favouriteMovies,
   playDoubleBeep,
   clickable = true,
+  seenMovies,
 }) => {
   const { selectedMovie, mustWatchMovies, animatedMovies } =
     useContext(MoviesContext);
@@ -46,6 +48,16 @@ const MovieCard = ({
       }
     });
   }, [favouriteMovies]);
+
+  useEffect(() => {
+    setSeenMovie(false);
+    if (!seenMovies || seenMovies.length === 0) return;
+    seenMovies.map((databaseMovie) => {
+      if (databaseMovie.id == movie.id) {
+        return setSeenMovie(true);
+      }
+    });
+  }, [seenMovies]);
 
   const imgPath = "https://image.tmdb.org/t/p/w500/";
   const formatedReleaseDate = () => {
@@ -94,7 +106,7 @@ const MovieCard = ({
     }
   };
 
-  const handleAddSeenMovie = () => {
+  const handleAddSeenMovie = async () => {
     if (!currentUser) {
       // alarmSound.play();
       // playActive();
@@ -109,6 +121,16 @@ const MovieCard = ({
         eyeAlertRef.current.style.display = "none";
       }, 1200);
       return;
+    }
+
+    if (seenMovie) {
+      // console.log("We are removing this");
+      await removeSeenMoviesFromUserDocument(currentUser, [movie]);
+      setSeenMovie(false);
+    } else {
+      // console.log("We are adding this");
+      await addSeenMoviesToUserDocument(currentUser, [movie]);
+      setSeenMovie(true);
     }
   };
 
@@ -141,6 +163,7 @@ const MovieCard = ({
               {seenMovie ? (
                 <svg
                   className="seen-icon"
+                  onClick={handleAddSeenMovie}
                   version="1.1"
                   id="Capa_1"
                   xmlns="http://www.w3.org/2000/svg"
