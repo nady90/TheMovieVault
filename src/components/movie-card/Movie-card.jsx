@@ -146,7 +146,11 @@ const MovieCard = ({
               handleClick(movie);
             }}
           >
-            <img className="thumbnail" src={`${imgPath}${movie.poster_path}`} />
+            <img
+              className="thumbnail"
+              src={`${imgPath}${movie.poster_path}`}
+              alt={movie.title}
+            />
           </div>
 
           <div className="title-container">
@@ -217,7 +221,7 @@ const MovieCard = ({
                   <img
                     className="red-heart-img"
                     src={redheartimg}
-                    alt=""
+                    alt={"Added to favorites"}
                     onClick={handleAddMovie}
                   />
                 </>

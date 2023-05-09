@@ -28,6 +28,15 @@
 
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 742px) {
+    padding: 0.8rem 1rem;
+  }
+
+  @media screen and (max-width: 742px) {
+    padding: 0.8rem 0.5rem;
+  }
+
   .logo-box {
     color: #fff;
     font-size: 3.6rem;
@@ -36,15 +45,60 @@
     align-items: center;
 
     cursor: pointer;
+
+    @media screen and (max-width: 1194px) {
+      font-size: 2.6rem;
+    }
+
+    @media screen and (max-width: 1070px) {
+      font-size: 2.2rem;
+    }
+
+    @media screen and (max-width: 742px) {
+      font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 440px) {
+      font-size: 0.9rem;
+    }
   }
   .links-container {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 1070px) {
+      margin-left: 25px;
+    }
+
     a {
       font-size: 1.6rem;
       color: #a1b1cb;
       text-decoration: none;
       margin-right: 5.1rem;
+
+      @media screen and (max-width: 1180px) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (max-width: 1070px) {
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 1000px) {
+        margin-right: 2.1rem;
+      }
+
+      @media screen and (max-width: 742px) {
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-right: 1.2rem;
+      }
+
+      @media screen and (max-width: 440px) {
+        font-size: 0.7rem;
+        font-weight: 500;
+        margin-right: 1.1rem;
+      }
     }
   }
   .search-container {
@@ -61,6 +115,27 @@
       border-radius: 1.85rem;
 
       padding: 8px 19px;
+
+      @media screen and (max-width: 1000px) {
+        width: 18.4rem;
+        height: 3.7rem;
+      }
+      @media screen and (max-width: 742px) {
+        width: 12.4rem;
+        height: 2.7rem;
+      }
+
+      @media screen and (max-width: 440px) {
+        width: 9.4rem;
+        height: 1.7rem;
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 360px) {
+        width: 6.4rem;
+        height: 1.7rem;
+        font-size: 0.6rem;
+      }
     }
   }
   .profile-container {
@@ -119,6 +194,27 @@
       margin-left: 5px;
       transition: all 0.2s ease-in-out;
       border: 1px solid #ffffff00;
+
+      @media screen and (max-width: 1180px) {
+        font-size: 1.4rem;
+        padding: 5px 6px;
+        margin-left: 5px;
+        white-space: nowrap;
+      }
+
+      @media screen and (max-width: 742px) {
+        font-size: 1rem;
+        padding: 3px 4px;
+        margin-left: 5px;
+        white-space: nowrap;
+      }
+
+      @media screen and (max-width: 440px) {
+        font-size: 0.7rem;
+        padding: 1px 2.5px;
+        margin-left: 3px;
+        white-space: nowrap;
+      }
 
       &:hover {
         // transform: translateY(-2px);

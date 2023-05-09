@@ -5,6 +5,7 @@
 
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 
   position: relative;
   z-index: 1;
@@ -30,19 +31,49 @@
     bottom: 47%;
     z-index: 3;
     margin-top: 3rem;
+
     .selected-movie-title {
       font-size: 6rem;
       margin-bottom: 2rem;
+
+      @media screen and (max-width: 660px) {
+        font-size: 5rem;
+        margin-bottom: 2rem;
+      }
+
+      @media screen and (max-width: 660px) {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+      }
     }
 
     .selected-movie-overview {
       font-size: 1.4rem;
       max-width: 56rem;
+
+      @media screen and (max-width: 660px) {
+        font-size: 1.2rem;
+      }
+      @media screen and (max-width: 660px) {
+        font-size: 1.1rem;
+        max-width: 80vw;
+      }
     }
 
     .genre-container {
       font-size: 1.8rem;
       margin-top: 1rem;
+
+      @media screen and (max-width: 660px) {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+      }
+
+      @media screen and (max-width: 660px) {
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+
       h3 {
         color: #ff2e00;
         text-transform: uppercase;
@@ -59,6 +90,19 @@
       font-size: 2rem;
       display: flex;
       gap: 2rem;
+
+      @media screen and (max-width: 660px) {
+        margin-top: 1.4rem;
+
+        font-size: 1.5rem;
+        gap: 1.5rem;
+      }
+
+      @media screen and (max-width: 660px) {
+        font-size: 1rem;
+        gap: 1rem;
+      }
+
       .watch-button {
         cursor: pointer;
         padding: 1rem 3rem;
@@ -70,9 +114,18 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+
+        @media screen and (max-width: 660px) {
+          padding: 0.5rem 1.1rem;
+          border-radius: 1rem;
+        }
+
         span {
         }
         svg {
+          @media screen and (max-width: 660px) {
+            transform: scale(0.8);
+          }
         }
 
         &:hover {
@@ -89,15 +142,24 @@
       .mylist-button {
         cursor: pointer;
         padding: 1rem 3rem;
-        display: block;
+        display: flex;
+        align-items: center;
         border-radius: 3rem;
 
-        display: block;
         background-color: #5c5c5c;
+
+        @media screen and (max-width: 660px) {
+          padding: 0.5rem 1.1rem;
+          border-radius: 1rem;
+        }
+
         span {
           margin-right: 1rem;
         }
         svg {
+          @media screen and (max-width: 660px) {
+            transform: scale(0.9);
+          }
         }
 
         &:hover {
@@ -110,6 +172,7 @@
         }
       }
     }
+
     .meta-data-container {
       margin-top: 1.5rem;
 

@@ -1,6 +1,10 @@
 .aside-container {
   // background-color: red;
   flex-basis: 9%;
+
+  @media screen and (max-width: 1180px) {
+    flex-basis: 9%;
+  }
   .aside {
     width: 90px;
     height: 320px;
@@ -10,6 +14,16 @@
     height: 315px;
     left: -32px;
     top: 125px;
+
+    @media screen and (max-width: 1180px) {
+      width: 85px;
+      height: 320px;
+    }
+
+    @media screen and (max-width: 742px) {
+      width: 75px;
+      height: 320px;
+    }
 
     background: linear-gradient(
       2.87deg,
@@ -26,6 +40,14 @@
     padding: 12px 0px;
     svg {
       transform: translateX(55px);
+
+      @media screen and (max-width: 1180px) {
+        transform: scale(0.8) translateX(55px);
+      }
+
+      @media screen and (max-width: 742px) {
+        transform: scale(0.7) translateX(55px);
+      }
     }
   }
 }

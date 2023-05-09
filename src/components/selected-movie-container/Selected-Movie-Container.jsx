@@ -66,7 +66,7 @@ const SelectedMovieContainer = () => {
   };
 
   const handelAddMovie = async () => {
-    if (selectedMovie === {}) return;
+    if (selectedMovie == {}) return;
     console.log(selectedMovie);
     const res = await addMoviesToUserDocument(currentUser, [selectedMovie]);
 

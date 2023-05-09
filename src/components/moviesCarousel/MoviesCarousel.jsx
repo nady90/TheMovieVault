@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./MoviesCarousel.styles.scss";
 
 import MovieCard from "../movie-card/Movie-card";
@@ -30,6 +30,10 @@ const MoviesCarousel = ({
 
   const [playDoubleBeep] = useSound(alertSound, { volume: 0.25 });
 
+  const carousel = useRef(null);
+  const leftBtn = useRef(null);
+  const rightBtn = useRef(null);
+
   const categoryTitle = () => {
     if (type === "animated") {
       return <h3>BEST ANIMATED MOVIES</h3>;
@@ -56,10 +60,38 @@ const MoviesCarousel = ({
     }
   }, [movies]);
 
+  const handleScroll = (e) => {
+    // console.log(carousel.current.scrollLeft);
+  };
+
+  const handleLeftBtnScroll = () => {
+    console.log("left", carousel.current.scrollLeft);
+    carousel.current.scrollLeft = carousel.current.scrollLeft - 20;
+  };
+
+  const handleRightBtnScroll = () => {
+    console.log("right", carousel.current.scrollLeft);
+    carousel.current.scrollLeft = carousel.current.scrollLeft + 20;
+  };
+
+  useEffect(() => {
+    carousel.current.addEventListener("scroll", handleScroll);
+    leftBtn.current.addEventListener("click", handleLeftBtnScroll);
+    rightBtn.current.addEventListener("click", handleRightBtnScroll);
+  }, []);
+
   return (
     <div className={typesObject[type]}>
       {categoryTitle()}
-      <div className="scroller-container">
+      <button ref={leftBtn} className="scroll-left-btn">
+        Left
+      </button>
+
+      <button ref={rightBtn} className="scroll-right-btn">
+        Right
+      </button>
+
+      <div ref={carousel} className="scroller-container">
         <div className="must-watch-container">
           {movies.map((movie) => {
             return (

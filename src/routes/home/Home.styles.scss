@@ -5,5 +5,9 @@
 
   .home-content-container {
     display: flex;
+
+    @media screen and (max-width: 742px) {
+      gap: 50px;
+    }
   }
 }
