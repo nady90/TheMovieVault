@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
           <div className="column column-3">
             <h3>TALK TO US</h3>
-            <span>support@ercom.com</span>
+            <span>naguib.abanoub@gmail.com</span>
             <span>+2 01019699 933</span>
           </div>
           <div className="column column-4 socials-column">
