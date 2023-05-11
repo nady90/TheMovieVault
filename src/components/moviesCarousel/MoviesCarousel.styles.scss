@@ -137,7 +137,7 @@ body::-webkit-scrollbar-thumb {
   svg {
     fill: none;
     stroke: #000000;
-    stroke-width: 1px;
+    strokewidth: 1px;
 
     @media (max-width: 450px) {
       transform: scale(0.8);
@@ -182,7 +182,7 @@ body::-webkit-scrollbar-thumb {
   svg {
     fill: none;
     stroke: #000000;
-    stroke-width: 1px;
+    strokewidth: 1px;
 
     @media (max-width: 450px) {
       transform: scale(0.8);
