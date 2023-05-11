@@ -82,7 +82,7 @@ const MoviesCarousel = ({
   const handleLeftBtnScroll = () => {
     const distance = 160;
     const step = 20;
-    const speed = 55;
+    const speed = 20;
     let scrollAmount = 0;
 
     const sliderTimer = setInterval(() => {
@@ -97,7 +97,7 @@ const MoviesCarousel = ({
   const handleRightBtnScroll = () => {
     const distance = 160;
     const step = 20;
-    const speed = 55;
+    const speed = 20;
     let scrollAmount = 0;
 
     const sliderTimer = setInterval(() => {

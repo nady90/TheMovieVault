@@ -22,13 +22,15 @@
     }
 
     button {
+      all: unset;
+      text-align: center;
       font-size: 1.8rem;
 
       padding: 1rem;
-      background-color: var(--primary-color-1);
+      background-color: #4949e7;
       color: white;
       border-radius: 5px;
-      box-shadow: 3px 3px 5px rgb(163, 163, 163);
+      // box-shadow: 3px 3px 5px rgb(163, 163, 163);
 
       cursor: pointer;
 

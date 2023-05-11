@@ -53,6 +53,9 @@
       border: 2px solid black;
     }
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .thumbnail {
       width: 168px;
       height: 237px;
@@ -129,7 +132,7 @@
           stroke-linecap: round;
           stroke-linejoin: round;
           stroke-miterlimit: 10;
-      }
+        }
       }
 
       .eye-container {
