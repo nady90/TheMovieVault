@@ -32,6 +32,8 @@
     .actor-img-container {
       overflow: hidden;
       .actor-img {
+        background-color: #000;
+
         max-width: 100%;
         object-fit: contain;
         transition: transform 0.3s ease-in-out;

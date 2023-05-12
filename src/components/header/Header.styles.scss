@@ -178,6 +178,26 @@
     justify-content: space-around;
     align-items: center;
 
+    .bell-icon {
+      cursor: pointer;
+
+      @media (max-width: 1250px) {
+        transform: scale(0.8);
+      }
+
+      @media (max-width: 1050px) {
+        transform: scale(0.5);
+      }
+
+      @media (max-width: 540px) {
+        transform: scale(0.4);
+      }
+
+      &:hover path {
+        stroke: #000;
+      }
+    }
+
     svg {
       margin-right: 35px;
 
@@ -302,6 +322,12 @@
     .profile-pic-container {
       position: relative;
 
+      display: flex;
+      align-items: center;
+      .profile-pic-svg {
+        position: relative;
+      }
+
       img {
         @media (max-width: 1250px) {
           width: 40px;
@@ -314,7 +340,7 @@
           width: 20px;
         }
       }
-      svg {
+      svg.online-icon {
         margin: 0;
         position: absolute;
         bottom: 2px;
@@ -326,13 +352,13 @@
 
         @media (max-width: 1050px) {
           transform: scale(0.5);
-          bottom: 0px;
-          right: 0px;
+          bottom: 1.4px;
+          right: 5.4px;
         }
         @media (max-width: 540px) {
           transform: scale(0.4);
-          bottom: -2px;
-          right: -2px;
+          bottom: 4px;
+          right: 3.8px;
         }
       }
     }
