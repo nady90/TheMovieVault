@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Aside from "../../components/aside/Aside";
 import "./MoviePage.style.scss";
 import imdbicon from "../../assets/imdbicon.png";
 import YouTube from "react-youtube";
 import CastCard from "../../components/cast-card/CastCard";
+import Header from "../../components/header/Header";
 
 /**
  * 1. Get the movie object associated with the id → /movie/{movie_id} .... append_to_response=videos

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./ActorsDetailsPage.styles.scss";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import Header from "../../components/Header/Header";
 
 const ActorsDetailsPage = () => {
   const { id } = useParams();
