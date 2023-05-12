@@ -5,11 +5,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import profileIcon from "../../assets/profile-pic.png";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { MoviesContext } from "../../contexts/movies.context";
 
 const Header = ({ type }) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
+  const { search, setSearch } = useContext(MoviesContext);
+  const [searchField, setSearchField] = useState("");
 
   // console.log("From Header:", currentUser);
 
@@ -23,6 +26,25 @@ const Header = ({ type }) => {
 
   const handleBellClick = () => {
     setShowNotifications(!showNotifications);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchField(e.target.value);
+  };
+
+  const searchMovie = async (e) => {
+    e.preventDefault();
+
+    const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
+    const searchURL = "https://api.themoviedb.org/3/search/movie";
+
+    const res = await fetch(
+      `${searchURL}?api_key=${apiKey}&query=${searchField}`
+    );
+    const data = await res.json();
+
+    setSearch(data.results);
+    navigate("/search");
   };
 
   return (
@@ -111,13 +133,16 @@ const Header = ({ type }) => {
         <NavLink to="">REVIEWES</NavLink>
       </div>
       <div className="search-container">
-        <input
-          className="search"
-          type="search"
-          name="search"
-          id="search"
-          placeholder="SEARCH"
-        />
+        <form onSubmit={searchMovie}>
+          <input
+            onChange={handleSearchChange}
+            className="search"
+            type="search"
+            name="search"
+            id="search"
+            placeholder="SEARCH"
+          />
+        </form>
       </div>
       <div className="profile-container">
         {currentUser ? (

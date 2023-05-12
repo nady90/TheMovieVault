@@ -33,6 +33,7 @@ export const MoviesProvider = ({ children }) => {
   const [documentaryMovies, setDocumentaryMovies] = useState([]);
   const [favouriteMovies, setFavouriteMovies] = useState([]);
   const [seenMovies, setSeenMovies] = useState([]);
+  const [search, setSearch] = useState([]);
 
   const { currentUser } = useContext(UserContext);
 
@@ -171,6 +172,8 @@ export const MoviesProvider = ({ children }) => {
     documentaryMovies,
     favouriteMovies,
     seenMovies,
+    search,
+    setSearch,
   };
 
   useEffect(() => {
