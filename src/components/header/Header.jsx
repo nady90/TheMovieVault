@@ -6,7 +6,7 @@ import profileIcon from "../../assets/profile-pic.png";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
-const Header = () => {
+const Header = ({ type }) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
+    <div className={`header ${type}`}>
       <div className="logo-box" onClick={goToHome}>
         <svg
           width="80"
@@ -105,9 +105,9 @@ const Header = () => {
         <NavLink to="/" style={{ color: "#fff" }}>
           HOME
         </NavLink>
-        <NavLink to="">MOVIES</NavLink>
-        <NavLink to="">TV SHOWS</NavLink>
-        <NavLink to="">ACTORS</NavLink>
+        {/* <NavLink to="">TV SHOWS</NavLink> */}
+        <NavLink to="/actors">ACTORS</NavLink>
+        <NavLink to="">REVIEWES</NavLink>
       </div>
       <div className="search-container">
         <input

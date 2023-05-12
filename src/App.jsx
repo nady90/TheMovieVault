@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./routes/home/Home";
 import Authentication from "./routes/authentication/Authentication";
 import MoviePage from "./routes/movie-page/MoviePage";
+import ActorsPage from "./routes/actors-page/ActorsPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<Home />}></Route>
       <Route path="/auth" element={<Authentication />}></Route>
       <Route path="/movie/:movieId" element={<MoviePage />}></Route>
+      <Route path="/actors" element={<ActorsPage />}></Route>
     </Routes>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
@@ -24,6 +24,10 @@ const MoviePage = () => {
   const [cast, setCast] = useState([]);
   const [showMore, setShowMore] = useState(false);
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [logoPath, setLogoPath] = useState("");
+  const logoContainerRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
   const apiURL = "https://api.themoviedb.org/3/";
@@ -83,7 +87,10 @@ const MoviePage = () => {
   const handelAddMovie = () => {};
 
   const renderYouTube = () => {
-    if (movieObject.videos !== undefined) {
+    if (
+      movieObject.videos !== undefined &&
+      movieObject.videos.results.length > 0
+    ) {
       return (
         <YouTube
           videoId={movieObject.videos.results[0].key}
@@ -97,16 +104,34 @@ const MoviePage = () => {
     }
   };
 
-  console.log("Similar movies:", similarMovies);
+  const goToSimilarMovie = (id) => {
+    navigate(`/movie/${id}`);
+    window.scrollTo(0, 0);
+  };
+
+  const getMovieLogo = async () => {
+    // const logoURL = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}&language=en-US&include_image_language=null,en,fr,pt,de`;
+    const logoURL = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}`;
+
+    const { data } = await axios.get(logoURL);
+
+    const logos = data.logos;
+    let logoPath = logos[0].file_path;
+
+    logoPath = `${imgPath}${logoPath}`;
+
+    setLogoPath(logoPath);
+  };
 
   useEffect(() => {
     getMovieDetails(movieId);
     getSimilarMovies();
-  }, []);
+  }, [movieId]);
 
   useEffect(() => {
     getCast();
     getSimilarMovies();
+    getMovieLogo();
   }, [movieObject]);
 
   return (
@@ -164,6 +189,47 @@ const MoviePage = () => {
                     fill="white"
                   />
                 </svg>
+              </a>
+              <a
+                className="logo-button"
+                onClick={() => {
+                  logoContainerRef.current.classList.toggle("visible");
+                }}
+              >
+                <span>MOVIE LOGO</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 18 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.6536 9.49103V15.3187H1.99835V3.66341H6.17758C6.21921 3.07232 6.36074 2.51454 6.57719 1.99838H1.99835C1.08258 1.99838 0.333313 2.74764 0.333313 3.66341V15.3187C0.333313 16.2344 1.08258 16.9837 1.99835 16.9837H13.6536C14.5694 16.9837 15.3186 16.2344 15.3186 15.3187V11.1561L13.6536 9.49103ZM12.4048 13.6536H3.24712L5.53655 10.7148L7.16828 12.6796L9.4577 9.73246L12.4048 13.6536ZM14.7359 6.06939C15.1022 5.48662 15.3186 4.81229 15.3186 4.07967C15.3186 2.0067 13.6453 0.333344 11.5723 0.333344C9.49933 0.333344 7.82597 2.0067 7.82597 4.07967C7.82597 6.15264 9.49933 7.826 11.564 7.826C12.2966 7.826 12.9792 7.60954 13.5537 7.24324L16.1511 9.84069L17.3333 8.65851L14.7359 6.06939ZM11.5723 6.16096C11.0203 6.16096 10.4909 5.94169 10.1006 5.55137C9.71028 5.16105 9.491 4.63166 9.491 4.07967C9.491 3.52768 9.71028 2.99829 10.1006 2.60797C10.4909 2.21766 11.0203 1.99838 11.5723 1.99838C12.1243 1.99838 12.6537 2.21766 13.044 2.60797C13.4343 2.99829 13.6536 3.52768 13.6536 4.07967C13.6536 4.63166 13.4343 5.16105 13.044 5.55137C12.6537 5.94169 12.1243 6.16096 11.5723 6.16096Z"
+                    fill="white"
+                  />
+                </svg>
+
+                <div
+                  ref={logoContainerRef}
+                  className="movie-logo-container invisible"
+                >
+                  <img src={logoPath} alt={"Movie logo"} />
+
+                  <svg
+                    className="close"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                      fill="black"
+                    />
+                  </svg>
+                </div>
               </a>
             </div>
 
@@ -278,6 +344,9 @@ const MoviePage = () => {
                 <img
                   className="similar-movie"
                   src={`${imgPath}/${movie.poster_path}`}
+                  onClick={() => {
+                    goToSimilarMovie(movie.id);
+                  }}
                 />
               );
             })}
