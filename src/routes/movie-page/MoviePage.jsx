@@ -26,6 +26,9 @@ const MoviePage = () => {
   const [similarMovies, setSimilarMovies] = useState([]);
   const [logoPath, setLogoPath] = useState("");
   const logoContainerRef = useRef(null);
+  const [showTrailer, setShowTrailer] = useState(false);
+  const [trailerKey, setTrailerKey] = useState(null);
+  const youtubeRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -83,7 +86,24 @@ const MoviePage = () => {
     setSimilarMovies(results);
   };
 
-  const handleShowTrailer = () => {};
+  const getVideoKey = async (id) => {
+    const apiKey = "e596aa0f4b9bb6cd5497d3c34451645f";
+
+    //https://api.themoviedb.org/3/movie/157336/videos?api_key={api_key}
+    const { data: results } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`
+    );
+
+    console.log(results.results[0].key);
+    return results.results[0].key;
+  };
+
+  const handleShowTrailer = async () => {
+    const key = await getVideoKey(movieId);
+    setShowTrailer(true);
+    setTrailerKey(key);
+  };
+
   const handelAddMovie = () => {};
 
   const renderYouTube = () => {
@@ -125,6 +145,25 @@ const MoviePage = () => {
 
     setLogoPath(logoPath);
   };
+
+  const closeTrailerWhenClickingOutside = (event) => {
+    if (youtubeRef.current && !youtubeRef.current.contains(event.target)) {
+      // alert("You clicked outside of me!");
+      setShowTrailer(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeTrailerWhenClickingOutside);
+
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener(
+        "mousedown",
+        closeTrailerWhenClickingOutside
+      );
+    };
+  }, [youtubeRef]);
 
   useEffect(() => {
     getMovieDetails(movieId);
@@ -372,6 +411,28 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+
+      {showTrailer && (
+        <div className="youtube-container" ref={youtubeRef}>
+          <YouTube
+            videoId={trailerKey}
+            className="youtube-player"
+            opts={{
+              height: "100%",
+              width: "100%",
+            }}
+          />
+          <div
+            className="close-yt"
+            onClick={() => {
+              setShowTrailer(false);
+            }}
+          >
+            Close Trailer
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
