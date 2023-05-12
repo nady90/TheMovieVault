@@ -9,6 +9,7 @@ import Home from "./routes/home/Home";
 import Authentication from "./routes/authentication/Authentication";
 import MoviePage from "./routes/movie-page/MoviePage";
 import ActorsPage from "./routes/actors-page/ActorsPage";
+import ActorsDetailsPage from "./routes/actor-details-page/ActorsDetailsPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/auth" element={<Authentication />}></Route>
       <Route path="/movie/:movieId" element={<MoviePage />}></Route>
       <Route path="/actors" element={<ActorsPage />}></Route>
+      <Route path="/actor/:id" element={<ActorsDetailsPage />}></Route>
     </Routes>
   );
 }
