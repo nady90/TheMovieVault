@@ -1,5 +1,6 @@
 .cast-card {
   margin-right: 3rem;
+  cursor: pointer;
 
   img {
     height: 200px;
@@ -7,6 +8,10 @@
     border-radius: 9px;
     overflow: hidden;
     margin-bottom: 1rem;
+
+    &:hover {
+      border: 2px solid #4949e7;
+    }
   }
 
   .actor-name {

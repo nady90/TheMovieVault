@@ -12,8 +12,6 @@ const ActorsPage = () => {
 
   const imgPath = "https://image.tmdb.org/t/p/original";
 
-  console.log(actors);
-
   const getActorGender = (gender) => {
     return gender === 2 ? "his" : "her";
   };
