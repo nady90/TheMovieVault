@@ -116,6 +116,9 @@ const MoviePage = () => {
     const { data } = await axios.get(logoURL);
 
     const logos = data.logos;
+
+    if (data.logos == undefined) return;
+
     let logoPath = logos[0].file_path;
 
     logoPath = `${imgPath}${logoPath}`;
@@ -126,6 +129,7 @@ const MoviePage = () => {
   useEffect(() => {
     getMovieDetails(movieId);
     getSimilarMovies();
+    getMovieLogo();
   }, [movieId]);
 
   useEffect(() => {
@@ -133,6 +137,10 @@ const MoviePage = () => {
     getSimilarMovies();
     getMovieLogo();
   }, [movieObject]);
+
+  useEffect(() => {
+    getMovieLogo();
+  });
 
   return (
     <div className="movie-page-layout">
@@ -214,7 +222,17 @@ const MoviePage = () => {
                   ref={logoContainerRef}
                   className="movie-logo-container invisible"
                 >
-                  <img src={logoPath} alt={"Movie logo"} />
+                  {logoPath !== "" ? (
+                    <img src={logoPath} alt={"Movie logo"} />
+                  ) : (
+                    <span
+                      style={{
+                        textAlign: "center",
+                      }}
+                    >
+                      Logo doesn't exist <br /> :(
+                    </span>
+                  )}
 
                   <svg
                     className="close"
@@ -342,6 +360,7 @@ const MoviePage = () => {
               if (idx > 4) return;
               return (
                 <img
+                  key={idx}
                   className="similar-movie"
                   src={`${imgPath}/${movie.poster_path}`}
                   onClick={() => {
