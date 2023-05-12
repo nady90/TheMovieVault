@@ -68,6 +68,7 @@
 
           .actor-img {
             width: 100%;
+            aspect-ratio: 0.667;
 
             transition: transform 0.2s ease-in-out;
             &:hover {

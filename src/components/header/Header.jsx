@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.styles.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 const Header = ({ type }) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
 
   // console.log("From Header:", currentUser);
@@ -20,8 +21,8 @@ const Header = ({ type }) => {
     navigate("/");
   };
 
-  const deleteThisLater = () => {
-    navigate("/movie/123");
+  const handleBellClick = () => {
+    setShowNotifications(!showNotifications);
   };
 
   return (
@@ -173,6 +174,7 @@ const Header = ({ type }) => {
               </g>
             </svg> */}
             <svg
+              onClick={handleBellClick}
               className="bell-icon"
               width="30"
               height="30"
@@ -213,16 +215,16 @@ const Header = ({ type }) => {
                 <path
                   d="M11 1C5.477 1 1 5.477 1 11C1 16.523 5.477 21 11 21C16.523 21 21 16.523 21 11C21 5.477 16.523 1 11 1Z"
                   stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M3.271 17.346C3.271 17.346 5.5 14.5 11 14.5C16.5 14.5 18.73 17.346 18.73 17.346M11 11C11.7956 11 12.5587 10.6839 13.1213 10.1213C13.6839 9.55871 14 8.79565 14 8C14 7.20435 13.6839 6.44129 13.1213 5.87868C12.5587 5.31607 11.7956 5 11 5C10.2043 5 9.44128 5.31607 8.87868 5.87868C8.31607 6.44129 8 7.20435 8 8C8 8.79565 8.31607 9.55871 8.87868 10.1213C9.44128 10.6839 10.2043 11 11 11Z"
                   stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
 
@@ -255,6 +257,19 @@ const Header = ({ type }) => {
               Sign In{" "}
             </div>
           </>
+        )}
+        {showNotifications && (
+          <div className="notifications-container">
+            <div className="notification-heading">
+              {`Hi,`}
+              <span className="notification-name">
+                {" "}
+                {currentUser ? currentUser.displayName : "Guest"}
+              </span>
+            </div>
+
+            <div className="notifications-count">You have no notifications</div>
+          </div>
         )}
       </div>
     </div>

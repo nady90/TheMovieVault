@@ -174,9 +174,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   &:hover {
-    background-color: #a9a9a9;
     background: #000;
-    outline: 1px solid white;
+    outline: 1px solid white !important;
+    outline-offset: 0;
   }
 
   svg {

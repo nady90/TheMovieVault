@@ -13,7 +13,6 @@ const ActorsDetailsPage = () => {
   const imgPath = "https://image.tmdb.org/t/p/w500";
 
   const getActorDetails = async (id) => {
-    console.log(`${actorURL}/${id}?api_key=${apiKey}`);
     const res = await fetch(
       `${actorURL}/${id}?api_key=${apiKey}&append_to_response=credits,images`
     );
@@ -21,7 +20,7 @@ const ActorsDetailsPage = () => {
     const data = await res.json();
 
     setActorDetails(data);
-    console.log(actorDetails);
+    console.log("Actor details:", data);
   };
 
   useEffect(() => {

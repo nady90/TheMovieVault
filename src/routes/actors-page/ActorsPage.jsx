@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./ActorsPage.styles.scss";
 
 import { ActorsContext } from "../../contexts/actors.context";
-import Header from "../../components/Header/Header";
+import Header from "../../components/header/Header";
 import { useNavigate } from "react-router-dom";
 
 const ActorsPage = () => {
