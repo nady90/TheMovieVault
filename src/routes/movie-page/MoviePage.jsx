@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../components/footer/Footer";
@@ -8,6 +8,8 @@ import imdbicon from "../../assets/imdbicon.png";
 import YouTube from "react-youtube";
 import CastCard from "../../components/cast-card/CastCard";
 import Header from "../../components/header/Header";
+import { addMoviesToUserDocument } from "../../utils/firebase/firebase.utils";
+import { UserContext } from "../../contexts/user.context";
 
 /**
  * 1. Get the movie object associated with the id → /movie/{movie_id} .... append_to_response=videos
@@ -29,6 +31,7 @@ const MoviePage = () => {
   const [showTrailer, setShowTrailer] = useState(false);
   const [trailerKey, setTrailerKey] = useState(null);
   const youtubeRef = useRef(null);
+  const { currentUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -104,7 +107,11 @@ const MoviePage = () => {
     setTrailerKey(key);
   };
 
-  const handelAddMovie = () => {};
+  const handelAddMovie = async () => {
+    console.log("My movie id is: ", movieId);
+    const res = await addMoviesToUserDocument(currentUser, [{ id: movieId }]);
+    console.log("My res is:", res);
+  };
 
   const renderYouTube = () => {
     if (
