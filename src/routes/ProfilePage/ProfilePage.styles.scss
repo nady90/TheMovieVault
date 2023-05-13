@@ -7,6 +7,16 @@
   h1.login-text {
     font-size: 8rem;
     text-align: center;
+
+    @media (max-width: 750px) {
+      font-size: 6rem;
+    }
+
+    @media (max-width: 550px) {
+      font-size: 5rem;
+      flex-grow: 1;
+      margin-top: 3rem;
+    }
   }
 
   .user-content-container {

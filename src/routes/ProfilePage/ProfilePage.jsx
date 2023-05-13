@@ -8,8 +8,6 @@ import Footer from "../../components/footer/Footer";
 const ProfilePage = () => {
   const { currentUser } = useContext(UserContext);
 
-  console.log(currentUser);
-
   return (
     <div className="profile-page">
       <Header type={"fixed"} />
