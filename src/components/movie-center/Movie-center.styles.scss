@@ -1,6 +1,7 @@
 .movie-center {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 
   .show-more-button {
     display: inline-block;

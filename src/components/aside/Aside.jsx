@@ -6,6 +6,7 @@ const AsideContainer = () => {
     <div className="aside-container">
       <div className="aside">
         <svg
+          className="aside__profile-icon"
           width="30"
           height="30"
           viewBox="0 0 30 30"

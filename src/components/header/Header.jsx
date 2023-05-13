@@ -125,12 +125,31 @@ const Header = ({ type }) => {
         </svg>
       </div>
       <div className="links-container">
-        <NavLink to="/" style={{ color: "#fff" }}>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) => {
+            return isActive ? "active-nav-link" : "";
+          }}
+        >
           HOME
         </NavLink>
         {/* <NavLink to="">TV SHOWS</NavLink> */}
-        <NavLink to="/actors">ACTORS</NavLink>
-        <NavLink to="/reviews">REVIEWES</NavLink>
+        <NavLink
+          to="/actors"
+          className={({ isActive, isPending }) => {
+            return isActive ? "active-nav-link" : "";
+          }}
+        >
+          ACTORS
+        </NavLink>
+        <NavLink
+          to="/reviews"
+          className={({ isActive, isPending }) => {
+            return isActive ? "active-nav-link" : "";
+          }}
+        >
+          REVIEWES
+        </NavLink>
       </div>
       <div className="search-container">
         <form onSubmit={searchMovie}>

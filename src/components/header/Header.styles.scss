@@ -83,6 +83,14 @@
     svg {
       transform: scale(0.7);
 
+      & > * {
+        stroke: white;
+      }
+
+      &:hover > * {
+        stroke: #4949e7;
+      }
+
       @media screen and (max-width: 742px) {
         transform: scale(0.6);
       }
@@ -102,6 +110,10 @@
 
     @media screen and (max-width: 700px) {
       margin-left: 5px;
+    }
+
+    .active-nav-link {
+      color: #fff;
     }
 
     a {

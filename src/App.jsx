@@ -13,6 +13,7 @@ import ActorsDetailsPage from "./routes/actor-details-page/ActorsDetailsPage";
 import SearchPage from "./routes/searchPage/SearchPage";
 import ReviewsPage from "./routes/reviews/ReviewsPage";
 import MovieReview from "./routes/movieReview/MovieReview";
+import ProfilePage from "./routes/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/search" element={<SearchPage />}></Route>
       <Route path="/reviews" element={<ReviewsPage />}></Route>
       <Route path="/review/:id" element={<MovieReview />}></Route>
+      <Route path="/profile" element={<ProfilePage />}></Route>
     </Routes>
   );
 }
