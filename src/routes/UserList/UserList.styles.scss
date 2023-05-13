@@ -7,6 +7,8 @@
 
   .favorite-container {
     padding-left: 2rem;
+    overflow: auto;
+    padding-bottom: 1rem;
 
     .favorite-heading {
     }
@@ -24,6 +26,7 @@
         .img-container {
           img {
             width: 200px;
+            cursor: pointer;
           }
         }
         .title {
@@ -58,6 +61,8 @@
   .seen-container {
     padding-left: 2rem;
     padding-bottom: 2rem;
+    overflow: auto;
+    padding-bottom: 1rem;
 
     .seen-heading {
     }
@@ -76,6 +81,7 @@
         .img-container {
           img {
             width: 200px;
+            cursor: pointer;
           }
         }
         .title {

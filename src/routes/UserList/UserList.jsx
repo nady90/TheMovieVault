@@ -20,8 +20,15 @@ const UserList = () => {
       <div className="favorite-container">
         <h2 className="favorite-heading">Your Favorite Movies</h2>
         <div className="favorite-movies-inner-container">
-          {!favouriteMovies ? (
-            ""
+          {!favouriteMovies || favouriteMovies.length === 0 ? (
+            <h2
+              style={{
+                fontSize: "1.9rem",
+                color: "red",
+              }}
+            >
+              You have no favorite movies
+            </h2>
           ) : (
             <>
               {favouriteMovies.map((movie) => {
@@ -50,8 +57,15 @@ const UserList = () => {
       <div className="seen-container">
         <h2 className="seen-heading">Movies You've Seen</h2>
         <div className="seen-movies-inner-container">
-          {!seenMovies ? (
-            ""
+          {!seenMovies || seenMovies.length === 0 ? (
+            <h2
+              style={{
+                fontSize: "1.9rem",
+                color: "red",
+              }}
+            >
+              You haven't seen any movies yet
+            </h2>
           ) : (
             <>
               {seenMovies.map((movie) => {
