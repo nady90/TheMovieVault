@@ -14,6 +14,8 @@ import SearchPage from "./routes/searchPage/SearchPage";
 import ReviewsPage from "./routes/reviews/ReviewsPage";
 import MovieReview from "./routes/movieReview/MovieReview";
 import ProfilePage from "./routes/ProfilePage/ProfilePage";
+import UserList from "./routes/UserList/UserList";
+import Underconstruction from "./routes/Underconstruction/Underconstruction";
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
       <Route path="/reviews" element={<ReviewsPage />}></Route>
       <Route path="/review/:id" element={<MovieReview />}></Route>
       <Route path="/profile" element={<ProfilePage />}></Route>
+      <Route path="/lists" element={<UserList />}></Route>
+      <Route path="/underconstruction" element={<Underconstruction />}></Route>
+      <Route path="*" element={<h1>404</h1>}></Route>
     </Routes>
   );
 }

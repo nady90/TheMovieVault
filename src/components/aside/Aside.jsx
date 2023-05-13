@@ -60,6 +60,9 @@ const AsideContainer = () => {
           </defs>
         </svg>
         <svg
+          onClick={() => {
+            navigate("/lists");
+          }}
           width="30"
           height="30"
           viewBox="0 0 30 30"
@@ -118,6 +121,9 @@ const AsideContainer = () => {
           </g>
         </svg>
         <svg
+          onClick={() => {
+            navigate("/underconstruction");
+          }}
           width="30"
           height="30"
           viewBox="0 0 30 30"
@@ -152,6 +158,9 @@ const AsideContainer = () => {
           </g>
         </svg>
         <svg
+          onClick={() => {
+            navigate("/underconstruction");
+          }}
           width="30"
           height="30"
           viewBox="0 0 30 30"
