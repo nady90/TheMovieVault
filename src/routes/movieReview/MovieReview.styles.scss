@@ -1,0 +1,95 @@
+.all-reviews-container {
+  overflow: hidden;
+
+  .img-container {
+    max-height: 75vh;
+    overflow: hidden;
+    position: relative;
+    .movie-backdrop {
+      display: block;
+      width: 100vw;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+    .movie-title {
+      position: absolute;
+      color: white;
+      background-color: #000;
+      font-size: 5rem;
+      bottom: 20%;
+      left: 5%;
+    }
+  }
+
+  .review-container {
+    padding: 2rem;
+
+    &:not(:last-of-type) {
+      border-bottom: 2px solid gray;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      .author-text {
+      }
+      .author-text-value {
+        color: #4949e7;
+      }
+    }
+    .review-text {
+      font-size: 1.8rem;
+      line-height: 1.7;
+    }
+
+    .review-url {
+      display: block;
+      max-width: max-content;
+      border-radius: 7px;
+      margin-top: 1rem;
+      text-decoration: none;
+      background-color: #4949e7;
+      color: #fff;
+      font-size: 1.6rem;
+      padding: 0.5rem 1rem;
+      border: 3px solid #4949e700;
+
+      &:hover {
+        background-color: #fff;
+        color: #4949e7;
+        border: 3px solid #4949e7;
+      }
+    }
+  }
+
+  .back-to-top {
+    all: unset;
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    background-color: #000;
+    color: white;
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 3px solid #00000000;
+    cursor: pointer;
+
+    &:hover {
+      color: #000;
+      background-color: #fff;
+      border: 3px solid #000;
+    }
+
+    .back-to-top-text {
+    }
+
+    .arrow {
+      display: block;
+      transform: translateY(-2px);
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.review-card {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #b4b4b4;
+  }
+
+  .movie-img {
+    width: 40%;
+    border-radius: 12px;
+    cursor: pointer;
+
+    object-fit: contain;
+
+    border: 7px solid #4949e700;
+    &:hover {
+      border: 7px solid #4949e7;
+    }
+  }
+
+  .review-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+
+    h3 {
+      font-size: 2.4rem;
+    }
+    h4 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.8rem;
+      line-height: 1.6;
+    }
+
+    button {
+      all: unset;
+      background-color: #4949e7;
+      color: #fff;
+      width: max-content;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 2rem;
+
+      &:hover {
+        background: #000;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.reviews-page {
+  h1 {
+    // color: #4949e7;
+    color: #000;
+    font-size: 5rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .reviews-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}

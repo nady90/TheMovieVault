@@ -130,7 +130,7 @@ const Header = ({ type }) => {
         </NavLink>
         {/* <NavLink to="">TV SHOWS</NavLink> */}
         <NavLink to="/actors">ACTORS</NavLink>
-        <NavLink to="">REVIEWES</NavLink>
+        <NavLink to="/reviews">REVIEWES</NavLink>
       </div>
       <div className="search-container">
         <form onSubmit={searchMovie}>
