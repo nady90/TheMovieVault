@@ -3,9 +3,20 @@
   gap: 3rem;
   align-items: flex-start;
 
+  @media (max-width: 750px) {
+    gap: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
+
   &:not(:last-child) {
     padding-bottom: 1rem;
     border-bottom: 3px solid #b4b4b4;
+
+    @media (max-width: 750px) {
+    }
   }
 
   .movie-img {
@@ -16,6 +27,10 @@
     object-fit: contain;
 
     border: 7px solid #4949e700;
+
+    @media (max-width: 750px) {
+    }
+
     &:hover {
       border: 7px solid #4949e7;
     }
@@ -27,15 +42,36 @@
     justify-content: space-between;
     gap: 2rem;
 
+    @media (max-width: 530px) {
+      gap: 1rem;
+    }
+
     h3 {
       font-size: 2.4rem;
+      @media (max-width: 750px) {
+        font-size: 2rem;
+      }
+
+      @media (max-width: 530px) {
+        font-size: 1.7rem;
+      }
     }
     h4 {
       font-size: 2rem;
+      @media (max-width: 750px) {
+        font-size: 1.5rem;
+      }
     }
     p {
       font-size: 1.8rem;
       line-height: 1.6;
+      @media (max-width: 750px) {
+        font-size: 1.3rem;
+      }
+
+      @media (max-width: 530px) {
+        font-size: 1rem;
+      }
     }
 
     button {
@@ -47,6 +83,11 @@
       border-radius: 10px;
       cursor: pointer;
       font-size: 2rem;
+
+      @media (max-width: 750px) {
+        padding: 0.5rem 1rem;
+        font-size: 1.3rem;
+      }
 
       &:hover {
         background: #000;
