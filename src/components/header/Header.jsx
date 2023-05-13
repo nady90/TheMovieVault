@@ -245,7 +245,12 @@ const Header = ({ type }) => {
                 />
               </g>
             </svg>
-            <div className="profile-pic-container">
+            <div
+              className="profile-pic-container"
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
               {/* <img className="profile-pic" src={profileIcon} alt="" /> */}
 
               <svg

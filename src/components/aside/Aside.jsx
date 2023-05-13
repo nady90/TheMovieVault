@@ -1,11 +1,17 @@
 import React from "react";
 import "./Aside.styles.scss";
+import { useNavigate } from "react-router-dom";
 
 const AsideContainer = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="aside-container">
       <div className="aside">
         <svg
+          onClick={() => {
+            navigate("/profile");
+          }}
           className="aside__profile-icon"
           width="30"
           height="30"
