@@ -9,6 +9,7 @@ import Footer from "../../components/footer/Footer";
 const Authentication = () => {
   return (
     <div className="authentication-page">
+      <Header type={"fixed"} />
       <div className="authentication-container">
         <SignIn />
         <SignUp />
