@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./Header.styles.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import profileIcon from "../../assets/profile-pic.png";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { MoviesContext } from "../../contexts/movies.context";
@@ -13,8 +12,6 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
   const { search, setSearch } = useContext(MoviesContext);
   const [searchField, setSearchField] = useState("");
-
-  // console.log("From Header:", currentUser);
 
   const goToAuth = () => {
     navigate("/auth");
