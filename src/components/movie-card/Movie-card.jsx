@@ -147,6 +147,7 @@ const MovieCard = ({
             }}
           >
             <img
+              loading="lazy"
               className="thumbnail"
               src={`${imgPath}${movie.poster_path}`}
               alt={movie.title}
@@ -159,7 +160,7 @@ const MovieCard = ({
           <div className="date-contaier"> {formatedReleaseDate()} </div>
           <div className="rating-container">
             <div className="imdb-rating">
-              <img src={imdbicon} alt="" />
+              <img loading="lazy" src={imdbicon} alt="" />
               <span> {movie.vote_average} </span>
             </div>
 
@@ -223,6 +224,7 @@ const MovieCard = ({
                     src={redheartimg}
                     alt={"Added to favorites"}
                     onClick={handleAddMovie}
+                    loading="lazy"
                   />
                 </>
               ) : (
@@ -230,7 +232,12 @@ const MovieCard = ({
                   <div ref={alertRef} className="sign-in-alert">
                     Sign In First!
                   </div>
-                  <img src={whiteheartimg} alt="" onClick={handleAddMovie} />
+                  <img
+                    loading="lazy"
+                    src={whiteheartimg}
+                    alt=""
+                    onClick={handleAddMovie}
+                  />
                 </div>
               )}
             </div>
