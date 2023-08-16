@@ -50,6 +50,7 @@ const ActorsPage = () => {
               <div key={actor.id} className="actor-item">
                 <div className="actor-img-container">
                   <img
+                    loading="lazy"
                     className="actor-img"
                     src={`${imgPath}${actor.profile_path}`}
                     alt={actor.name}
