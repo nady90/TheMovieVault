@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../components/footer/Footer";
-import Aside from "../../components/aside/Aside";
 import "./MoviePage.style.scss";
 import imdbicon from "../../assets/imdbicon.png";
 import YouTube from "react-youtube";

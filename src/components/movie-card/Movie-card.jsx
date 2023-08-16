@@ -1,17 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useRef } from "react";
 import "./Movie-card.styles.scss";
-import Skeleton from "react-loading-skeleton";
+
 import "react-loading-skeleton/dist/skeleton.css";
 import imdbicon from "../../assets/imdbicon.png";
 import whiteheartimg from "../../assets/whiteheartimg.png";
 import redheartimg from "../../assets/redheatimg.png";
-import { MoviesContext } from "../../contexts/movies.context";
 import CardSkeleton from "../movie-card-skeleton/Movie-card-skeleton";
-import alertSound from "../../assets/sounds/dobule-beep-alarm.mp3";
-import { useNavigate } from "react-router-dom";
 
-import useSound from "use-sound";
+import { useNavigate } from "react-router-dom";
 
 import {
   addMoviesToUserDocument,
@@ -23,7 +20,6 @@ import { UserContext } from "../../contexts/user.context";
 
 const MovieCard = ({
   movie,
-  type,
   selectMovie,
   isLoaded,
   favouriteMovies,
@@ -31,8 +27,6 @@ const MovieCard = ({
   clickable = true,
   seenMovies,
 }) => {
-  const { selectedMovie, mustWatchMovies, animatedMovies } =
-    useContext(MoviesContext);
   const { currentUser } = useContext(UserContext);
   const [favouriteMovie, setFavoriteMovie] = useState(false);
   const [seenMovie, setSeenMovie] = useState(false);
@@ -72,22 +66,11 @@ const MovieCard = ({
     navigate(`movie/${movie.id}`);
   };
 
-  // const [playActive] = useSound(alertSound, { volume: 0.25 });
-
-  // const alarmSound = new Audio();
-  // alarmSound.preload = "auto";
-  // alarmSound.src = alertSound;
-
   const handleAddMovie = () => {
     if (!currentUser) {
-      // alarmSound.play();
-      // playActive();
       playDoubleBeep();
 
       alertRef.current.style.display = "block";
-      // eyeAlertRef.current.style.display == "block"
-      //   ? (alertRef.current.style.display = "none")
-      //   : (alertRef.current.style.display = "block");
 
       setTimeout(() => {
         alertRef.current.style.display = "none";
@@ -108,15 +91,9 @@ const MovieCard = ({
 
   const handleAddSeenMovie = async () => {
     if (!currentUser) {
-      // alarmSound.play();
-      // playActive();
       playDoubleBeep();
 
       eyeAlertRef.current.style.display = "block";
-      // If alertRef is display block make it display none
-      // alertRef.current.style.display == "block"
-      //   ? (eyeAlertRef.current.style.display = "none")
-      //   : (eyeAlertRef.current.style.display = "block");
       setTimeout(() => {
         eyeAlertRef.current.style.display = "none";
       }, 1200);
@@ -124,11 +101,9 @@ const MovieCard = ({
     }
 
     if (seenMovie) {
-      // console.log("We are removing this");
       await removeSeenMoviesFromUserDocument(currentUser, [movie]);
       setSeenMovie(false);
     } else {
-      // console.log("We are adding this");
       await addSeenMoviesToUserDocument(currentUser, [movie]);
       setSeenMovie(true);
     }

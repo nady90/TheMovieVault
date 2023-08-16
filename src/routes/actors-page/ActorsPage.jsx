@@ -18,25 +18,6 @@ const ActorsPage = () => {
 
   const goToActorsPage = (id) => {
     navigate(`/actor/${id}`);
-    // console.log(id);
-    // console.log(actors);
-    // console.log(actors[0].id);
-    // console.log(actors[0].name);
-    // console.log(actors[0].profile_path);
-    // console.log(actors[0].gender);
-    // console.log(actors[0].known_for_department);
-    // console.log(actors[0].popularity);
-    // console.log(actors[0].place_of_birth);
-    // console.log(actors[0].biography);
-    // console.log(actors[0].birthday);
-    // console.log(actors[0].deathday);
-    // console.log(actors[0].imdb_id);
-    // console.log(actors[0].homepage);
-    // console.log(actors[0].adult);
-    // console.log(actors[0].vote_average);
-    // console.log(actors[0].vote_count);
-    // console.log(actors[0].updated_at);
-    // console.log(actors[0].created_at);
   };
 
   return (

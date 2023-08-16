@@ -6,22 +6,14 @@ import MoviesCarousel from "../moviesCarousel/MoviesCarousel";
 import { MoviesContext } from "../../contexts/movies.context";
 
 const MovieCenter = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
-  const [playTrailer, setPlayTrailer] = useState(false);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [comedyMovies, setComedyMovies] = useState([]);
   const [visible, setVisible] = useState(true);
   const [mainPageNo, setMainPageNo] = useState(0);
 
   const {
-    mustWatchMovies,
-    animatedMovies,
-    comediesMovies,
-    dramadMovies,
-    crimeMovies,
     musicalMovies,
     horrorMovies,
     documentaryMovies,
